@@ -6,8 +6,7 @@
 Electronic Inventory Records Management
 
 it can execute with this command
-java EIRM14S2/EIRM D:\hc105\workspace\2014S2JavaExercise\input\products_1.txt D:\hc105\workspace\2014S2JavaExercise\input\instructions_1.txt
-D:\hc105\workspace\2014S2JavaExercise\output\output.txt D:\hc105\workspace\2014S2JavaExercise\output\report.txt
+java EIRM14S2/EIRM D:\hc105\workspace\2014S2JavaExercise\input\products_1.txt D:\hc105\workspace\2014S2JavaExercise\input\instructions_1.txt D:\hc105\workspace\2014S2JavaExercise\output\output.txt D:\hc105\workspace\2014S2JavaExercise\output\report.txt
 
 first argument is the file name for readIntoStore
 second argument is the file name for readInstrs
