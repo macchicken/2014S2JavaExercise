@@ -1,0 +1,10 @@
+best sales product of time peroid 01-04-2014 1-5-2014 is coffee with ROA 1.0803334.
+---
+the net income gained during Tue Apr 01 00:00:00 CST 2014-Thu May 01 00:00:00 CST 2014 is $27.854002.
+100 of milk are out of date, with total cost $4.63.
+16 of coffee are out of date, with total cost $1.256.
+---
+On Thu May 01 00:00:00 CST 2014, following products would be available.
+200 of sugar2 with a use-by date of Mon Dec 01 00:00:00 CST 2014 are available.
+80 of sugar with a use-by date of Fri Dec 12 00:00:00 CST 2014 are available.
+10 of sauce pan are available.

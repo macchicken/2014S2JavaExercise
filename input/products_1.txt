@@ -1,0 +1,28 @@
+product  sugar
+boughton 13-5-13
+useby  12-12-2014
+boughtat  $3.56
+quantity  100
+
+product  sauce pan
+quantity  10
+boughtat  $19.99
+boughton 13-5-2014
+
+product  sugar2
+boughton 13-5-13
+useby  1-12-2014
+boughtat  $3.57
+quantity  200
+
+product  coffee
+boughton 1-7-13
+useby 25-4-2014
+boughtat  $1.57
+quantity  20
+
+product  potato
+boughton 1-7-13
+useby  1-6-2014
+boughtat  $1.57
+quantity  20

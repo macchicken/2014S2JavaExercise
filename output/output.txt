@@ -1,0 +1,24 @@
+product: sugar2
+quantity: 200
+boughton: Mon May 13 00:00:00 CST 2013
+soldon: null
+useby: Mon Dec 01 00:00:00 CST 2014
+boughtat: $3.57
+soldat: $0.0
+
+product: sauce pan
+quantity: 10
+boughton: Tue May 13 00:00:00 CST 2014
+soldon: null
+useby: null
+boughtat: $19.99
+soldat: $0.0
+
+product: sugar
+quantity: 80
+boughton: Mon May 13 00:00:00 CST 2013
+soldon: Sat Apr 05 00:00:00 CST 2014
+useby: Fri Dec 12 00:00:00 CST 2014
+boughtat: $3.56
+soldat: $4.56
+
