@@ -17,7 +17,7 @@ soldat: $0.0
 product: sugar
 quantity: 80
 boughton: Mon May 13 00:00:00 CST 2013
-soldon: Sat Apr 05 00:00:00 CST 2014
+soldon: Sun Apr 06 00:00:00 CST 2014
 useby: Fri Dec 12 00:00:00 CST 2014
 boughtat: $3.56
 soldat: $4.56

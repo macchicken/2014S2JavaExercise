@@ -55,7 +55,6 @@ public class TradeRecords {
 		store.addProduct(parameters);
 	}
 	
-	// TODO complete the ROA calculation procedure
 	public String[] calculateRoa(Date begin,Date end){
 		Iterator<Entry<String, LinkedList<Trade>>> it=records.entrySet().iterator();
 		Entry<String, LinkedList<Trade>> cur;

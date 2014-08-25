@@ -14,10 +14,10 @@ public class EIRM {
 		instrs.readIntoStore(inventoryfile,store);
 		System.out.println("---finish Inventory file---");
 		
-		/*the buy and sell action should be order in a ascending order of bought on and sold on date,
-		otherwise the quantity of product in the system would be inconsistent,and
+		/*the buy and sell action of same product should be group in a ascending order of bought on
+		  and sold on date, otherwise the quantity of product in the system would be inconsistent,
 		if the system would have to deal with that situation, it would get complicated,
-		also the rule of ordering the actions are not clear as well
+		also the rule of ordering the actions are not clear as well,
 		or maybe just ignore those actions*/
 		System.out.println("---process instructions file---");
 		instrs.readInstrs(instrFile);
