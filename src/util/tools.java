@@ -50,31 +50,27 @@ public class tools {
 		for (String p:parameters){
 			String[] fieldValues=p.split(Constants.keyValueSeparator);
 			Integer key=Constants.fieldMapping.get(fieldValues[0]);
-			String result;
 			switch(key){
 				case 1:
 					product.setProductName(fieldValues[1]);
 					break;
 				case 2:
-					result=util.tools.refineDateStr(fieldValues[1]);
 					try {
-						product.setBoughton(Constants.dateFormat.parse(result));
+						product.setBoughton(Constants.dateFormat.parse(fieldValues[1]));
 					} catch (ParseException e) {
 						System.out.println(e.getMessage());
 					}
 					break;
 				case 3:
-					result=util.tools.refineDateStr(fieldValues[1]);
 					try {
-						product.setSoldon(Constants.dateFormat.parse(result));
+						product.setSoldon(Constants.dateFormat.parse(fieldValues[1]));
 					} catch (ParseException e) {
 						System.out.println(e.getMessage());
 					}
 					break;
 				case 4:
-					result=util.tools.refineDateStr(fieldValues[1]);
 					try {
-						product.setUseby(Constants.dateFormat.parse(result));
+						product.setUseby(Constants.dateFormat.parse(fieldValues[1]));
 					} catch (ParseException e) {
 						System.out.println(e.getMessage());
 					}
