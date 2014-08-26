@@ -45,7 +45,7 @@ public class Instructions {
 						parameters.clear();
 					}
 				}
-				if (oneLine==null) {store.addProduct(parameters);}
+				if (parameters.size()!=0) {store.addProduct(parameters);}
 			}catch (ParseException e) {
 				System.out.println("some date parse errors ocuur "+e.getMessage());
 			}

@@ -4,7 +4,7 @@ import java.util.Date;
 
 import dto.Trade;
 
-public class TradeComparator extends MyObjectComparator {
+public class TradeComparator extends AbstractObjectComparator {
 
 
 	public TradeComparator() {

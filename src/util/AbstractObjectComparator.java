@@ -2,7 +2,7 @@ package util;
 
 import java.util.Comparator;
 
-public abstract class MyObjectComparator implements Comparator<Object> {
+public abstract class AbstractObjectComparator implements Comparator<Object> {
 	
 	protected String key;
 

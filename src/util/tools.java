@@ -7,7 +7,7 @@ import dto.Product;
 
 public class tools {
 	
-	private static int partition(Product arr[],int left,int right,MyObjectComparator pc){
+	private static int partition(Product arr[],int left,int right,AbstractObjectComparator pc){
 	      int i=left, j=right;
 	      Product tmp;
 	      Product pivot=arr[(left + right)/2];
@@ -26,7 +26,7 @@ public class tools {
 	}
 	
 	//implement a quicksort for personalise re-ordering,would change the input array
-	public static void quickSort(Product arr[],int left,int right,MyObjectComparator pc) {
+	public static void quickSort(Product arr[],int left,int right,AbstractObjectComparator pc) {
 	      int index = partition(arr,left,right,pc);
 	      if (left<index-1){quickSort(arr,left,index-1,pc);}
 	      if (index<right){quickSort(arr,index,right,pc);}

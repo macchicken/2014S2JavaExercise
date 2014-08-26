@@ -11,7 +11,7 @@ import dto.Product;
  * @author Barry
  * @since 2014-8-22
  */
-public class ProductComparator extends MyObjectComparator {
+public class ProductComparator extends AbstractObjectComparator {
 	
 
 	public ProductComparator() {
