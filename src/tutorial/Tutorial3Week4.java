@@ -81,6 +81,7 @@ public class Tutorial3Week4 {
 	 * above it and the number above and to the left
 	 */
 	public static void pascalTriangle(int n){
+		if (n<=0){System.out.println("please enter the size bigger than zero");return;}
 		int[][] numTable=new int[n][n];
 		for (int i=0;i<n;i++) {numTable[i][0]=1;}//initialise the first column
 		for (int i=1;i<n;i++){//start from second row
@@ -107,7 +108,7 @@ public class Tutorial3Week4 {
 //		reversedOrder(args);
 //		basicStatistics(args);
 //		columnRowSums(3,3);
-//		System.out.println("please enter the size for a Pascal Triangle:");
+//		System.out.println("please enter the size for a Pascal Triangle(bigger than zero):");
 //		java.util.Scanner sc = new java.util.Scanner(System.in);
 //		pascalTriangle(Integer.parseInt(sc.nextLine()));
 //		sc.close();
