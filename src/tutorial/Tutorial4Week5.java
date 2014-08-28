@@ -3,6 +3,7 @@ package tutorial;
 import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import dto.Person;
 
@@ -128,6 +129,11 @@ public class Tutorial4Week5 {
 		System.out.println("the word '"+gWord+"' appear "+count+" times");
 	}
 
+	public static void patternMatching(String date){
+		Pattern dateP = Pattern.compile("[0-9]{1,2}-[0-9]{1,2}-[0-9]{2,4}");
+		System.out.println(dateP.matcher(date).matches());
+	}
+
 
 	public static void main(String[] args) {
 //		personInfo();
@@ -135,6 +141,7 @@ public class Tutorial4Week5 {
 //		displayInterest(10,args);
 //		countWords();
 //		countWordsInParagraph(paragraph,"the");
+		patternMatching("2-2-14");
 	}
 
 }
