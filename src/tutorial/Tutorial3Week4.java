@@ -57,6 +57,7 @@ public class Tutorial3Week4 {
 	}
 
 	public static void columnRowSums(int height,int width){
+		if (height<=0||width<=0){System.out.println("please input two integer bigger than 0");return;}
 		int[][] numTable=new int[height][width];
 		int[] rowSums=new int[height];
 		int[] colSums=new int[width];
@@ -107,7 +108,7 @@ public class Tutorial3Week4 {
 	public static void main(String[] args) {
 //		reversedOrder(args);
 //		basicStatistics(args);
-//		columnRowSums(3,3);
+//		columnRowSums(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
 //		System.out.println("please enter the size for a Pascal Triangle(bigger than zero):");
 //		java.util.Scanner sc = new java.util.Scanner(System.in);
 //		pascalTriangle(Integer.parseInt(sc.nextLine()));
