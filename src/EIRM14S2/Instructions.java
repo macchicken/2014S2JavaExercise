@@ -5,12 +5,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 import util.Constants;
 import util.tools;
@@ -23,7 +23,6 @@ public class Instructions {
 	private HashMap<String,LinkedList<String>> cmdResult=new HashMap<String,LinkedList<String>>();
 	private String defaultReport="output\\report.txt";
 	private boolean instrsOk=false;
-	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	
 
 	
@@ -189,7 +188,7 @@ public class Instructions {
 		String parameter=cmd.substring(7).trim();
 		if (Constants.dateP.matcher(parameter).matches()){
 			try {
-				Date date=dateFormat.parse(tools.refineDateStr(parameter));
+				Date date=Constants.dateFormat.parse(tools.refineDateStr(parameter));
 				store.discardProduct(date);
 			} catch (ParseException e) {
 				e.printStackTrace();
@@ -198,29 +197,41 @@ public class Instructions {
 	}
 	
 	private void query(String cmd,Inventory store,TradeRecords tradeRecords){
-		String parameter=cmd.substring(5).trim();
+		java.util.Scanner cmdSc=new java.util.Scanner(cmd);
+		cmdSc.next();
+		String parameter="";
+		try {
+			parameter = cmdSc.next();
+		} catch (NoSuchElementException e1) {
+			System.out.println("for query,must be a date string following");
+			cmdSc.close();
+			return;
+		}
 		if (Constants.dateP.matcher(parameter).matches()){
+			cmdSc.close();
 			try {
-				Date date=dateFormat.parse(parameter);
+				Date date=Constants.dateFormat.parse(tools.refineDateStr(parameter));
 				cmdResult.put("queryAvailable",store.queryProductbyDate(date));
 			} catch (ParseException e) {
-				e.printStackTrace();
+				System.out.println("not in the date format dd-MM-(yy)yy");
+				return;
 			}
-		}else if (parameter.startsWith("bestsales")||parameter.startsWith("worstsales")){
+		}else if (parameter.equals("bestsales")||parameter.equals("worstsales")){
 			Date begin = null,end = null;
-			String[] dates = null;
 			boolean best=false;
 			try {
-				if (parameter.startsWith("bestsales")){
-					dates=parameter.substring(9).trim().split(Constants.valueSeparator);
-					best=true;
-				}else{dates=parameter.substring(10).trim().split(Constants.valueSeparator);}
-				begin=Constants.dateFormat.parse(dates[0]);
-				end=Constants.dateFormat.parse(dates[dates.length - 1]);
+				if (parameter.equals("bestsales")){best=true;}
+				begin=tools.formatDateString(cmdSc.next());
+				end=tools.formatDateString(cmdSc.next());
 			}catch (ParseException e) {
-				e.printStackTrace();
+				System.out.println("for bestsales or worstsales query please enter the date in format dd-MM-yyyy");
+				return;
+			}catch (NoSuchElementException nf){
+				System.out.println("for bestsales or worstsales query please enter the 2 dates");
+				return;
 			}
-			String[] productRoa=tradeRecords.calculateRoa(begin, end);
+			finally{cmdSc.close();}
+			String[] productRoa=tradeRecords.calculateRoa(begin,end);
 			if (productRoa.length!=0){
 				String[] pair=productRoa[0].split(Constants.commonSeparator);
 				float roa=Float.parseFloat(pair[1]);
@@ -243,23 +254,23 @@ public class Instructions {
 				LinkedList<String> result=new LinkedList<String>();
 				if (best) {words = "best sales";
 				}else{words = "worst sales";}
-				words += " product of time peroid " + dates[0] + " "
-						+ dates[dates.length - 1] + " is " + productName+ " with ROA " + roa;
+				words += " product of time peroid " + Constants.datef.format(begin) + " - "
+						+ Constants.datef.format(end) + " is " + productName+ " with ROA " + roa;
 				result.add(words);
 				cmdResult.put("queryroa",result);
 			}
-		}else if (parameter.startsWith("profit")){
-			parameter=parameter.substring(6).trim();
-			Date begin,end;
-			String[] dates=parameter.split(Constants.valueSeparator);
+		}else if (parameter.equals("profit")){
 			try {
-				begin=Constants.dateFormat.parse(tools.refineDateStr(dates[0]));
-				end=Constants.dateFormat.parse(tools.refineDateStr(dates[dates.length-1]));
+				Date begin=tools.formatDateString(cmdSc.next());
+				Date end=tools.formatDateString(cmdSc.next());
 				LinkedList<String> result=tradeRecords.queryProfit(begin, end, store);
 				cmdResult.put("queryprofit", result);
 			} catch (ParseException e) {
-				e.printStackTrace();
+				System.out.println("for profit query please enter 2 dates in format dd-MM-yyyy");
+			} catch (NoSuchElementException nf){
+				System.out.println("for profit query please enter 2 dates in format dd-MM-yyyy");
 			}
+			finally{cmdSc.close();}
 		}
 	}
 	

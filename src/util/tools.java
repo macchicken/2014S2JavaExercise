@@ -2,6 +2,7 @@ package util;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import dto.Product;
 
@@ -43,6 +44,14 @@ public class tools {
 			head="2";
 		}
 		return temp[0]+"-"+temp[1]+"-"+head+temp[2];
+	}
+	
+	public static Date formatDateString(String date) throws ParseException{
+		if (Constants.dateP.matcher(date).matches()){
+			return Constants.dateFormat.parse(refineDateStr(date));
+		}else{
+			throw new ParseException("not in the date format dd-MM-(yy)yy",0);
+		}
 	}
 	
 	public static Product transDataToProduct(ArrayList<String> parameters){

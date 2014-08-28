@@ -131,7 +131,9 @@ public class TradeRecords {
 			expiredL.add(products[j]);
 		}
 		LinkedList<String> result=new LinkedList<String>();
-		result.add("the net income gained during "+begin.toString()+"-"+end.toString()+" is $"+totalProfit);
+		result.add("the net income gained during "
+				+ Constants.datef.format(begin) + " - "
+				+ Constants.datef.format(end) + " is $" + totalProfit);
 		for (Product pro:expiredL){
 			float itemValue=pro.getUnitPrice()*pro.getQuantity();
 			result.add(pro.getQuantity()+" of "+pro.getProductName()+
