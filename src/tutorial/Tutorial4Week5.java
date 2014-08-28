@@ -141,7 +141,7 @@ public class Tutorial4Week5 {
 //		displayInterest(10,args);
 //		countWords();
 //		countWordsInParagraph(paragraph,"the");
-		patternMatching("11-07-2014");
+		patternMatching("11-08-2014");
 	}
 
 }
