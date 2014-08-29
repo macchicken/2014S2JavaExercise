@@ -102,7 +102,28 @@ public class Tutorial3Week4 {
 	}
 
 	public static void countLetter(String str){
-		
+		int[] upperCaseCount=new int[26];
+		int[] lowerCaseCount=new int[26];
+		char c='a';int len=str.length();
+		for (int i=0;i<len;i++){
+			c=str.charAt(i);
+			if (Character.isLetter(c)){
+				if (Character.isLowerCase(c)){
+					lowerCaseCount[c-'a']+=1;
+				}else{upperCaseCount[c-'A']+=1;}
+			}
+		}
+		int count=0;
+		for (int i=0;i<26;i++){
+			count=lowerCaseCount[i];
+			if (count != 0) {
+				System.out.printf("the number of occurrence for character %c is %d\n",(char)('a' + i),count);
+			}
+			count=upperCaseCount[i];
+			if (count != 0) {
+				System.out.printf("the number of occurrence for character %c is %d\n",(char)('A' + i),count);
+			}
+		}
 	}
 
 	public static void main(String[] args) {
@@ -113,6 +134,7 @@ public class Tutorial3Week4 {
 //		java.util.Scanner sc = new java.util.Scanner(System.in);
 //		pascalTriangle(Integer.parseInt(sc.nextLine()));
 //		sc.close();
+		countLetter("ocCurrEznce");
 	}
 
 }
