@@ -29,25 +29,27 @@ public class Tutorial3Week4 {
 		int rint=(int)n;
 		return n==rint?rint:0;
 	}
-
+	
+	//command line arguments: 10 5 4 3 6 9 8 7 2
 	public static void basicStatistics(String[] args){
 		int totalLen=args.length;
 		int len=hasIntRoot(totalLen);
-		if (len==0){System.out.println("must input some numbers with total equal to N*N");return;}
+		if (len==0){System.out.println("must input some numbers with total number equal to N*N");return;}
 		int[][] numTable=new int[len][len];
-		int total=0,min=0,max=0,leftDiagonal=0,rightDiagonal=0;
+		int total=0,leftDiagonal=0,rightDiagonal=0;
 		for (int i=0;i<len;i++){
 			for (int j=0;j<len;j++){
 				numTable[i][j]=Integer.parseInt(args[i*len+j]);
 			}
 		}
+		int min=numTable[0][0],max=numTable[0][0];
 		for (int i=0;i<len;i++){
 			for (int j=0;j<len;j++){
 				total+=numTable[i][j];
 				if (numTable[i][j]<=min){min=numTable[i][j];}
 				if (numTable[i][j]>=max){max=numTable[i][j];}
 				if (i==j){leftDiagonal+=numTable[i][j];}
-				if (i+j==totalLen-1){leftDiagonal+=numTable[i][j];}
+				if (i+j==len-1){rightDiagonal+=numTable[i][j];}
 			}
 		}
 		System.out.println("average "+total/totalLen);
@@ -128,7 +130,7 @@ public class Tutorial3Week4 {
 
 	public static void main(String[] args) {
 //		reversedOrder(args);
-//		basicStatistics(args);
+		basicStatistics(args);
 //		columnRowSums(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
 //		System.out.println("please enter the size for a Pascal Triangle(bigger than zero):");
 //		java.util.Scanner sc = new java.util.Scanner(System.in);
