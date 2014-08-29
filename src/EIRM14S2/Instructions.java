@@ -1,9 +1,8 @@
 package EIRM14S2;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,7 +29,7 @@ public class Instructions {
 	public void readIntoStore(String inventoryfile,Inventory store){
 		BufferedReader buff = null;
 		try {
-			buff=new BufferedReader(new InputStreamReader(new FileInputStream(inventoryfile)));
+			buff=new BufferedReader(new FileReader(inventoryfile));
 			String oneLine;
 			ArrayList<String> parameters=new ArrayList<String>();
 			try {
@@ -122,7 +121,7 @@ public class Instructions {
 	public void readInstrs(String instrFile){
 		BufferedReader buff = null;
 		try {
-			buff=new BufferedReader(new InputStreamReader(new FileInputStream(instrFile)));
+			buff=new BufferedReader(new FileReader(instrFile));
 			String oneLine;
 			String cmd="";
 			while((oneLine=buff.readLine())!=null){
