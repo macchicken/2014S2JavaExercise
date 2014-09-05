@@ -25,6 +25,7 @@ public class AccountTester {
 		System.out.println("balance of tester2 at the end of month: $"+tester2.calBalance());
 	
 
+		// test of Staff class for biweekly salary
 		Staff staff1=new Staff("Staff1",0,5);
 		System.out.println(staff1.getName()+" with paid rate "+staff1.getHourlyRate()+" starts to work");
 		staff1.setHours(30);
@@ -32,7 +33,7 @@ public class AccountTester {
 		double salary1=staff1.getSalary();
 		staff1.setHours(45);
 		System.out.println(staff1.getName()+" worked "+staff1.getHours()+" this week");
-		System.out.println(staff1.getName()+" these 2 week salary: "+(salary1+staff1.getSalary()));
+		System.out.println(staff1.getName()+" these 2 weeks salary: "+(salary1+staff1.getSalary()));
 	}
 
 }

@@ -9,9 +9,9 @@ package tutorial;
  */
 public class Staff {
 	
-	private String name; // name of the staff
-	private double hours;// working hours of one week
-	private double hourlyRate; // hourly rate of one week 
+	private String name; // staff name
+	private double hours;// working hours per week
+	private double hourlyRate; // hourly rate per week 
 
 
 	public Staff(String name, double hours, double hourlyRate) {
@@ -45,11 +45,11 @@ public class Staff {
 	 * calculate the salary of one week
 	 */
 	public double getSalary(){
-		double extraHours=hours-40;
+		double extraHours=this.hours-40;
 		if (extraHours>0){
-			return extraHours*(hourlyRate*1.5)+40*hourlyRate;
+			return extraHours*(this.hourlyRate*1.5)+40*this.hourlyRate;
 		}else{
-			return hours*hourlyRate;
+			return this.hours*this.hourlyRate;
 		}
 	}
 
