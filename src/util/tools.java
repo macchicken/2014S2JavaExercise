@@ -8,10 +8,10 @@ import dto.Product;
 
 public class tools {
 	
-	private static int partition(Product arr[],int left,int right,AbstractObjectComparator pc){
+	private static int partition(Object arr[],int left,int right,AbstractObjectComparator pc){
 	      int i=left, j=right;
-	      Product tmp;
-	      Product pivot=arr[(left + right)/2];
+	      Object tmp;
+	      Object pivot=arr[(left + right)/2];
 	      while (i <= j) {
 	    	  	while (pc.compare(arr[i], pivot)<0) i++;
 	    	  	while (pc.compare(arr[j], pivot)>0) j--;
@@ -27,7 +27,7 @@ public class tools {
 	}
 	
 	//implement a quicksort for personalise re-ordering,would change the input array
-	public static void quickSort(Product arr[],int left,int right,AbstractObjectComparator pc) {
+	public static void quickSort(Object arr[],int left,int right,AbstractObjectComparator pc) {
 	      int index = partition(arr,left,right,pc);
 	      if (left<index-1){quickSort(arr,left,index-1,pc);}
 	      if (index<right){quickSort(arr,index,right,pc);}
