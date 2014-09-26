@@ -48,7 +48,7 @@ public class Zoo {
 		return animals.get(id);
 	}
 
-	public void disPlayAllKeepers(){
+	public void displayAllKeepers(){
 		for (Keeper keeper:keepers.values()){
 			System.out.println(keeper);
 		}
