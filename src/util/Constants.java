@@ -31,4 +31,29 @@ public class Constants {
 	public static final String valueSeparator=" ";
 	public static final String keyValueSeparator=":";
 	
+	public static HashMap<String,Double> foodProportion=new HashMap<String,Double>(){
+		{put("banana",4.0);
+		put("apple",1.5);
+		put("piapple",1.5);
+		put("beef",1.0);
+		put("pork",1.1);
+		put("seaFood",2.0);
+		put("vegetable",7.0);}
+	};
+
+	public static HashMap<String,Double> aniamlWeight=new HashMap<String,Double>(){
+		{put("Caracal",60.0);
+		put("Serval",40.0);
+		put("Bobcat",30.0);
+		put("Cheetah",125.0);
+		put("Fishing Cat",30.0);
+		put("Jaguar",225.0);
+		put("Leopard ",210.0);
+		put("Eurasian Lynx ",80.0);
+		put("Lion ",425.0);
+		put("Tiger",675.0);
+		put("Snow Leopard",100.0);
+		}
+	};
+
 }
