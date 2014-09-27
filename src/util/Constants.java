@@ -53,9 +53,9 @@ public class Constants {
 		put("Cheetah",125.0);
 		put("Fishing Cat",30.0);
 		put("Jaguar",225.0);
-		put("Leopard ",210.0);
-		put("Eurasian Lynx ",80.0);
-		put("Lion ",425.0);
+		put("Leopard",210.0);
+		put("Eurasian Lynx",80.0);
+		put("Lion",425.0);
 		put("Tiger",675.0);
 		put("Snow Leopard",100.0);
 		}
