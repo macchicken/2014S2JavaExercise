@@ -28,6 +28,18 @@ public class ProductComparator extends AbstractObjectComparator {
 		if ("quantity".equals(this.key)){
 			return Integer.compare(no1.getQuantity(),no2.getQuantity());
 		}
+		if ("serial".equals(this.key)){
+			return no1.getSerialId().compareToIgnoreCase(no2.getSerialId());
+		}
+		if ("location".equals(this.key)){
+			String lo1=no1.getLocation(),lo2=no2.getLocation();
+			if ("".equals(lo1)){
+				if (!"".equals(lo2)){return 1;}
+				return 0;
+			}
+			if (!"".equals(lo1)&&"".equals(lo2)){return -1;}
+			return lo1.compareToIgnoreCase(lo2);
+		}
 		if ("boughton".equals(this.key)||"soldon".equals(this.key)
 			||"useby".equals(this.key)){
 			Date date1,date2;

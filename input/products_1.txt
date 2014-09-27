@@ -1,28 +1,57 @@
 product  sugar
+serial ID 1975su
 boughton 13-5-13
 useby  12-12-2014
 boughtat  $3.56
 quantity  100
 
 product  sauce pan
+serial ID 1975sa
 quantity  10
 boughtat  $19.99
 boughton 13-5-2014
 
 product  sugar2
+serial ID 2975su
 boughton 13-5-13
 useby  1-12-2014
 boughtat  $3.57
 quantity  200
 
 product  coffee
+serial ID 3975co
 boughton 1-7-13
 useby 25-4-2014
 boughtat  $1.57
 quantity  20
 
 product  potato
+serial ID 1075po
 boughton 1-7-13
 useby  1-6-2014
 boughtat  $1.57
 quantity  20
+
+product Apple iphoneX
+serial ID 4578bq
+quantity 382764
+price none
+location 10 Downing Street London England
+
+product Transistor Radios
+serial ID 8975bq
+quantity 0
+price $32.32
+location Akihabara Tokyo Japan (East)
+
+product Weetbix flakes
+serial ID 9575bq
+quantity 10000
+price none
+location Woolies Supermarket Marrackville Sydney NSW Australia
+
+product Nissan 370Z
+serial ID 9575cd
+quantity 15
+price none
+location Mr Little's car yard Parramatta Road Ashfield NSW

@@ -1,10 +1,14 @@
 best sales product of time peroid 01 April 2014 - 01 May 2014 is coffee with ROA 1.0803334.
 ---
-the net income gained during 01 April 2014 - 01 May 2014 is $27.854002.
-100 of milk are out of date, with total cost $4.63.
-16 of coffee are out of date, with total cost $1.256.
+the net income gained during 01 April 2014 - 01 May 2014 is $27.854.
+100 of milk with serial ID 2014mi are out of date, with total cost $4.63.
+16 of coffee with serial ID 3975co are out of date, with total cost $1.256.
 ---
 On Thu May 01 00:00:00 CST 2014, following products would be available.
-200 of sugar2 with a use-by date of Mon Dec 01 00:00:00 CST 2014 are available.
-80 of sugar with a use-by date of Fri Dec 12 00:00:00 CST 2014 are available.
-10 of sauce pan are available.
+200 of sugar2 with serial ID 2975su with a use-by date of Mon Dec 01 00:00:00 CST 2014 are available.
+80 of sugar with serial ID 1975su with a use-by date of Fri Dec 12 00:00:00 CST 2014 are available.
+10 of sauce pan with serial ID 1975sa are available.
+10000 of Weetbix flakes with serial ID 9575bq are available at Woolies Supermarket Marrackville Sydney NSW Australia.
+382764 of Apple iphoneX with serial ID 4578bq are available at 10 Downing Street London England.
+0 of Transistor Radios with serial ID 8975bq are available at Akihabara Tokyo Japan (East), the stock is nearly run out, you could wait for a few days if you request more.
+15 of Nissan 370Z with serial ID 9575cd are available at Mr Little's car yard Parramatta Road Ashfield NSW.

@@ -1,15 +1,15 @@
-buy product milk; boughton 31-3-2014; useby 5-4-2014;
+buy product milk; serial ID 2014mi; boughton 31-3-2014; useby 5-4-2014;
 boughtat $4.63; quantity 100
-sell product coffee; soldon 4-4-2014; soldat $9.88;
+sell product coffee; serial ID 3975co; soldon 4-4-2014; soldat $9.88;
 quantity 2
-sell product coffee; soldon 5-4-2014; soldat $9.88;
+sell product coffee; serial ID 3975co; soldon 5-4-2014; soldat $9.88;
 quantity 2
-sell product sugar; soldon 5-4-2014; soldat $4.56;
+sell product sugar; serial ID 1975su; soldon 5-4-2014; soldat $4.56;
 quantity 10
-sell product sugar; soldon 6-4-2014; soldat $4.56;
+sell product sugar; serial ID 1975su; soldon 6-4-2014; soldat $4.56;
 quantity 10
 discard 2-6-2014
 query  1-5-2014
 query profit 1-4-2014 1-5-2014
 query bestsales 01-04-2014 1-5-2014
-sort useby
+sort serial ID

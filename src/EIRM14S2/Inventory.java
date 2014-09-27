@@ -57,10 +57,11 @@ public class Inventory {
 	// add a specific product to store with pre-defined conditions
 	public void addProduct(ArrayList<String> parameters){
 		Product product=tools.transDataToProduct(parameters);
-		int quantity=product.getQuantity();
-		if (!"".equals(product.getProductName())&&quantity!=0){
-			Product original=store.get(product.getProductName());
-			float curunitPrice=product.getBoughtat()/quantity;
+		if (product.isValidProduct()){
+			int quantity=product.getQuantity();
+			Product original=store.get(product.getSerialId());
+			float curunitPrice = 0;
+			if (quantity!=0) {curunitPrice=product.getBoughtat()/quantity;}
 			float preUnitPrice=0;
 			if (original!=null){
 				quantity+=original.getQuantity();
@@ -71,7 +72,7 @@ public class Inventory {
 			else{unitPrice=preUnitPrice==0?curunitPrice:preUnitPrice;}
 			product.setUnitPrice(unitPrice);
 			product.setQuantity(quantity);
-			store.put(product.getProductName(),product);
+			store.put(product.getSerialId(),product);
 		}
 	}
 	
@@ -102,9 +103,10 @@ public class Inventory {
 		tools.quickSort(products,0,products.length-1,pc);
 		for (Product pro:products){
 			if (!pro.isExpiredByDate(date)&&!pro.isDiscarded()){
-				temp=pro.getQuantity()+" of "+pro.getProductName();
+				temp=pro.getQuantity()+" of "+pro.getProductName()+" with serial ID "+pro.getSerialId();
 				if (pro.getUseby()!=null){temp+=" with a use-by date of "+pro.getUseby();}
 				temp+=" are available";
+				if (!"".equals(pro.getLocation())){temp+=" at "+pro.getLocation();}
 				if (pro.getQuantity()<10){
 					temp+=", the stock is nearly run out, you could wait for a few days if you request more";
 				}

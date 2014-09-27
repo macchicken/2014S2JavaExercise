@@ -6,6 +6,7 @@ import java.util.Date;
 public class Product {
 	
 	private String productName="";
+	private String serialId="";
 	private int quantity=0;
 	private Date boughton;
 	private Date soldon;
@@ -13,6 +14,7 @@ public class Product {
 	private float boughtat;
 	private float soldat;
 	private float unitPrice;
+	private String location="";
 	private boolean discarded=false;//logical deletion flag
 	
 	
@@ -23,6 +25,7 @@ public class Product {
 	public Product copyProduct() {
 		Product another=new Product();
 		another.setProductName(this.getProductName());
+		another.setSerialId(this.getSerialId());
 		another.setQuantity(this.getQuantity());
 		another.setBoughton(this.getBoughton());
 		another.setSoldon(this.getSoldon());
@@ -30,6 +33,7 @@ public class Product {
 		another.setBoughtat(this.getBoughtat());
 		another.setSoldat(this.getSoldat());
 		another.setUnitPrice(this.unitPrice);
+		another.setLocation(this.getLocation());
 		another.setDiscarded(this.isDiscarded());
 		return another;
 	}
@@ -85,10 +89,26 @@ public class Product {
 		this.unitPrice = unitPrice;
 	}
 
+	public String getSerialId() {
+		return serialId;
+	}
+
+	public void setSerialId(String serialId) {
+		this.serialId = serialId;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 	public String toString(){
-		return "product: "+productName+"\nquantity: "+quantity+
+		return "product: "+productName+"\nserial ID: "+serialId+"\nquantity: "+quantity+
 				"\nboughton: "+boughton+"\nsoldon: "+soldon+"\nuseby: "+useby+
-				"\nboughtat: $"+boughtat+"\nsoldat: $"+soldat;
+				"\nboughtat: $"+boughtat+"\nsoldat: $"+soldat+"\nlocation: "+location;
 	}
 	
 	// whether item is expired by today
@@ -102,6 +122,10 @@ public class Product {
 	public boolean isExpiredByDate(Date date){
 		if (this.useby==null){return false;}
 		return this.useby.before(date);
+	}
+
+	public boolean isValidProduct(){
+		return !"".equals(productName)&&!"".equals(serialId);
 	}
 
 	public boolean isDiscarded() {

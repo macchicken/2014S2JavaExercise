@@ -1,24 +1,70 @@
-product: sugar2
-quantity: 200
-boughton: Mon May 13 00:00:00 CST 2013
-soldon: null
-useby: Mon Dec 01 00:00:00 CST 2014
-boughtat: $3.57
-soldat: $0.0
-
-product: sauce pan
-quantity: 10
-boughton: Tue May 13 00:00:00 CST 2014
-soldon: null
-useby: null
-boughtat: $19.99
-soldat: $0.0
-
 product: sugar
+serial ID: 1975su
 quantity: 80
 boughton: Mon May 13 00:00:00 CST 2013
 soldon: Sun Apr 06 00:00:00 CST 2014
 useby: Fri Dec 12 00:00:00 CST 2014
 boughtat: $3.56
 soldat: $4.56
+location: 
+
+product: Transistor Radios
+serial ID: 8975bq
+quantity: 0
+boughton: null
+soldon: null
+useby: null
+boughtat: $0.0
+soldat: $0.0
+location: Akihabara Tokyo Japan (East)
+
+product: Apple iphoneX
+serial ID: 4578bq
+quantity: 382764
+boughton: null
+soldon: null
+useby: null
+boughtat: $0.0
+soldat: $0.0
+location: 10 Downing Street London England
+
+product: Nissan 370Z
+serial ID: 9575cd
+quantity: 15
+boughton: null
+soldon: null
+useby: null
+boughtat: $0.0
+soldat: $0.0
+location: Mr Little's car yard Parramatta Road Ashfield NSW
+
+product: sugar2
+serial ID: 2975su
+quantity: 200
+boughton: Mon May 13 00:00:00 CST 2013
+soldon: null
+useby: Mon Dec 01 00:00:00 CST 2014
+boughtat: $3.57
+soldat: $0.0
+location: 
+
+product: sauce pan
+serial ID: 1975sa
+quantity: 10
+boughton: Tue May 13 00:00:00 CST 2014
+soldon: null
+useby: null
+boughtat: $19.99
+soldat: $0.0
+location: 
+
+product: Weetbix flakes
+serial ID: 9575bq
+quantity: 10000
+boughton: null
+soldon: null
+useby: null
+boughtat: $0.0
+soldat: $0.0
+location: Woolies Supermarket Marrackville Sydney NSW Australia
 

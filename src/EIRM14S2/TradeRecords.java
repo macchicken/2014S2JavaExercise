@@ -30,20 +30,19 @@ public class TradeRecords {
 	// the action for selling products
 	public void processSellTrade(ArrayList<String> parameters,Inventory store){
 		Product sellPro=tools.transDataToProduct(parameters);
-		if (!"".equals(sellPro.getProductName().trim())&&sellPro.getQuantity()!=0
-			&&sellPro.getSoldat()!=0&&sellPro.getSoldon()!=null){
+		if (sellPro.isValidProduct()&&sellPro.getSoldat()!=0&&sellPro.getSoldon()!=null){
 			Product pro=null;
-			if ((pro=store.updateStore(sellPro.getProductName(),sellPro))!=null){
+			if ((pro=store.updateStore(sellPro.getSerialId(),sellPro))!=null){
 				int soldQ=sellPro.getQuantity();
 				float purchase=pro.getUnitPrice()*soldQ;
 				float sold=pro.getSoldat();
 				int qBegin=pro.getQuantity()+soldQ;
 				Trade trade=new Trade();
-				trade.doTrade(pro.getProductName(),qBegin,soldQ,purchase,sold,pro.getSoldon());
+				trade.doTrade(pro.getProductName(),pro.getSerialId(),qBegin,soldQ,purchase,sold,pro.getSoldon());
 				LinkedList<Trade> tList=null;
-				if ((tList=records.get(pro.getProductName()))==null){
+				if ((tList=records.get(pro.getSerialId()))==null){
 					tList=new LinkedList<Trade>();
-					records.put(pro.getProductName(),tList);
+					records.put(pro.getSerialId(),tList);
 				}
 				tList.add(trade);
 			}
@@ -63,15 +62,14 @@ public class TradeRecords {
 		while(it.hasNext()){
 			cur=it.next();
 			LinkedList<Trade> trades=cur.getValue();
-			String proName=cur.getKey();
 			for (Trade trade:trades){
 				if (!trade.getTradeTime().before(begin)&&!trade.getTradeTime().after(end)){
-					Float proProfit=productProfits.get(proName);
+					Float proProfit=productProfits.get(trade.getTradeProduct());
 					if (proProfit==null){
 						proProfit=Float.valueOf(trade.getProfit());
 					}else{proProfit=Float.valueOf(proProfit.floatValue()+trade.getProfit());}
-					productProfits.put(proName,proProfit);
-					String quantities=productQua.get(proName);
+					productProfits.put(trade.getTradeProduct(),proProfit);
+					String quantities=productQua.get(trade.getTradeProduct());
 					if (quantities==null){
 						quantities=String.valueOf(trade.getQuantityBegin())
 								+Constants.commonSeparator+String.valueOf(trade.getQuantityend());
@@ -79,7 +77,7 @@ public class TradeRecords {
 						quantities = quantities.split(Constants.commonSeparator)[0]
 								+ Constants.commonSeparator+ String.valueOf(trade.getQuantityend());
 					}
-					productQua.put(proName,quantities);
+					productQua.put(trade.getTradeProduct(),quantities);
 				}
 			}
 		}
@@ -136,8 +134,10 @@ public class TradeRecords {
 				+ Constants.datef.format(end) + " is $" + totalProfit);
 		for (Product pro:expiredL){
 			float itemValue=pro.getUnitPrice()*pro.getQuantity();
-			result.add(pro.getQuantity()+" of "+pro.getProductName()+
-					" are out of date, with total cost $"+itemValue);
+			String temp=pro.getQuantity()+" of "+pro.getProductName()+" with serial ID "+pro.getSerialId()+
+					" are out of date, with total cost $"+itemValue;
+			if (!"".equals(pro.getLocation())){temp+=" at "+pro.getLocation();}
+			result.add(temp);
 		}
 		return result;
 	}

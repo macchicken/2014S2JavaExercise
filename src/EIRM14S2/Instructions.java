@@ -68,47 +68,59 @@ public class Instructions {
 		}
 		switch(field){
 			case 1: 
-				data=data.substring(7).trim();
+				data=data.trim().substring(7).trim();
 				if (Constants.nameP.matcher(data).matches()){
 					parameters.add(key+Constants.keyValueSeparator+data);
 				}
 				break;
 			case 2: 
-				data=data.substring(8).trim();
+				data=data.trim().substring(8).trim();
 				if (Constants.dateP.matcher(data).matches()){
 					String result=tools.refineDateStr(data);
 					parameters.add(key+Constants.keyValueSeparator+result);
 				}
 				break;
 			case 3: 
-				data=data.substring(6).trim();
+				data=data.trim().substring(6).trim();
 				if (Constants.dateP.matcher(data).matches()){
 					String result=tools.refineDateStr(data);
 					parameters.add(key+Constants.keyValueSeparator+result);
 				}
 				break;
 			case 4: 
-				data=data.substring(5).trim();
+				data=data.trim().substring(5).trim();
 				if (Constants.dateP.matcher(data).matches()){
 					String result=tools.refineDateStr(data);
 					parameters.add(key+Constants.keyValueSeparator+result);
 				}
 				break;
 			case 5: 
-				data=data.substring(8).trim();
+				data=data.trim().substring(8).trim();
 				if (Constants.priceP.matcher(data).matches()){
 					parameters.add(key+Constants.keyValueSeparator+data.substring(1));
 				}
 				break;
 			case 6: 
-				data=data.substring(6).trim();
+				data=data.trim().substring(6).trim();
 				if (Constants.priceP.matcher(data).matches()){
 					parameters.add(key+Constants.keyValueSeparator+data.substring(1));
 				}
 				break;
 			case 7: 
-				data=data.substring(8).trim();
+				data=data.trim().substring(8).trim();
 				if (Constants.numP.matcher(data).matches()){
+					parameters.add(key+Constants.keyValueSeparator+data);
+				}
+				break;
+			case 8: 
+				data=data.trim().substring(10).trim();
+				if (Constants.idP.matcher(data).matches()){
+					parameters.add(key+Constants.keyValueSeparator+data);
+				}
+				break;
+			case 9: 
+				data=data.trim().substring(9).trim();
+				if (Constants.addressP.matcher(data).matches()){
 					parameters.add(key+Constants.keyValueSeparator+data);
 				}
 				break;
@@ -276,6 +288,7 @@ public class Instructions {
 	//print the sort result to the console
 	private void sort(String cmd,Inventory store){
 		String key=cmd.substring(4).trim();
+		if ("serial ID".equals(key)){key="serial";}
 		if (Constants.fieldMapping.containsKey(key)){
 			ArrayList<String> sortResult=store.sort(key);
 			for (String words:sortResult){

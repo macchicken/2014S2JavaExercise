@@ -14,7 +14,10 @@ public class Constants {
 		put("useby",4);
 		put("boughtat",5);
 		put("soldat",6);
-		put("quantity",7);}
+		put("quantity",7);
+		put("serial",8);
+		put("location",9);
+		}
 	};
 	
 	public static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -23,6 +26,8 @@ public class Constants {
 	public static Pattern dateP = Pattern.compile("[0-9]{1,2}-[0-9]{1,2}-[0-9]{2,4}");
 	public static Pattern priceP = Pattern.compile("[$]([1-9][0-9]*|[0-9])([.][0-9]+|[.]{0})");
 	public static Pattern numP = Pattern.compile("[1-9][0-9]*|[0-9]");
+	public static Pattern idP = Pattern.compile("[0-9]{4}[a-zA-Z]{2}");
+	public static Pattern addressP = Pattern.compile("[^\\n\\x0B\f\r:]+");
 	
 	public static String defaultReport="output\\report.txt";
 	public static String defaultOuptput="output\\output.txt";

@@ -93,6 +93,12 @@ public class tools {
 				case 7:
 					product.setQuantity(Integer.parseInt(fieldValues[1]));
 					break;
+				case 8:
+					product.setSerialId(fieldValues[1]);
+					break;
+				case 9:
+					product.setLocation(fieldValues[1]);
+					break;
 				default:
 					System.out.println("invalid field value found "+fieldValues[0]);
 			}
