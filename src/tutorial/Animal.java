@@ -93,7 +93,7 @@ public class Animal {
 
 	public void feed(Food food){
 		double amountOfFood=food.getAmountOfFood();
-		if (appetite>=amountOfFood) {
+		if (appetite>=amountOfFood&&amountOfFood!=0) {
 			appetite -= amountOfFood;
 			double cost = food.calcFeedCost();
 			feedRecord.add(food);

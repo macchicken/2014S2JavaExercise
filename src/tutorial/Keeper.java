@@ -42,10 +42,14 @@ public class Keeper {
 			Calendar now = Calendar.getInstance();
 			a.weigh(weight);
 			if (!a.tooHeavy()) {
-				double w=util.Constants.aniamlWeight.get(a.getName())-weight;
-				double amountOfFood = w*(util.Constants.foodProportion.get(foodName));
-				Food food=new Food(keeperId,foodName, amountOfFood, unitPrice, now.getTime());
-				a.feed(food);
+				try {
+					double w=util.Constants.aniamlWeight.get(a.getName())-weight;
+					double amountOfFood = w*(util.Constants.foodProportion.get(foodName));
+					Food food=new Food(keeperId,foodName, amountOfFood, unitPrice, now.getTime());
+					a.feed(food);
+				} catch (NullPointerException e) {
+					System.out.println("either aniamlWeight or foodProportion not set");
+				}
 			}
 		}
 	}
