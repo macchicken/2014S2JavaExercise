@@ -1,5 +1,6 @@
 package EIRM14S2;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -55,13 +56,10 @@ public class TradeRecords {
 	}
 	
 	public String[] calculateRoa(Date begin,Date end){
-		Iterator<Entry<String, LinkedList<Trade>>> it=records.entrySet().iterator();
-		Entry<String, LinkedList<Trade>> cur;
+		Collection<LinkedList<Trade>> tradesC=records.values();
 		HashMap<String,Float> productProfits=new HashMap<String,Float>();
 		HashMap<String,String> productQua=new HashMap<String,String>();
-		while(it.hasNext()){
-			cur=it.next();
-			LinkedList<Trade> trades=cur.getValue();
+		for (LinkedList<Trade> trades:tradesC){
 			for (Trade trade:trades){
 				if (!trade.getTradeTime().before(begin)&&!trade.getTradeTime().after(end)){
 					Float proProfit=productProfits.get(trade.getTradeProduct());
@@ -99,9 +97,9 @@ public class TradeRecords {
 	}
 
 	public float calculateTotalProfit(Date begin,Date end,Inventory store){
-		java.util.Collection<LinkedList<Trade>> trades=records.values();
+		Collection<LinkedList<Trade>> tradesC=records.values();
 		float totalProfit=0;
-		for (LinkedList<Trade> tradeList:trades){
+		for (LinkedList<Trade> tradeList:tradesC){
 			for (Trade trade:tradeList){
 				if (!trade.getTradeTime().before(begin)&&!trade.getTradeTime().after(end)){
 					totalProfit+=trade.getProfit();
