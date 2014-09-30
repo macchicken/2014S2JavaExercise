@@ -24,17 +24,17 @@ public class Product {
 	
 	public Product copyProduct() {
 		Product another=new Product();
-		another.setProductName(this.getProductName());
-		another.setSerialId(this.getSerialId());
-		another.setQuantity(this.getQuantity());
-		another.setBoughton(this.getBoughton());
-		another.setSoldon(this.getSoldon());
-		another.setUseby(this.getUseby());
-		another.setBoughtat(this.getBoughtat());
-		another.setSoldat(this.getSoldat());
+		another.setProductName(this.productName);
+		another.setSerialId(this.serialId);
+		another.setQuantity(this.quantity);
+		another.setBoughton(this.boughton);
+		another.setSoldon(this.soldon);
+		another.setUseby(this.useby);
+		another.setBoughtat(this.boughtat);
+		another.setSoldat(this.soldat);
 		another.setUnitPrice(this.unitPrice);
-		another.setLocation(this.getLocation());
-		another.setDiscarded(this.isDiscarded());
+		another.setLocation(this.location);
+		another.setDiscarded(this.discarded);
 		return another;
 	}
 	
