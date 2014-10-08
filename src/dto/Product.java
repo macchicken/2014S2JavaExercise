@@ -108,7 +108,8 @@ public class Product {
 	public String toString(){
 		return "product: "+productName+"\nserial ID: "+serialId+"\nquantity: "+quantity+
 				"\nboughton: "+boughton+"\nsoldon: "+soldon+"\nuseby: "+useby+
-				"\nboughtat: $"+boughtat+"\nsoldat: $"+soldat+"\nlocation: "+location;
+				"\nboughtat: $"+boughtat+"\nsoldat: $"+soldat+"\nprice: $"+unitPrice+
+				"\nlocation: "+location;
 	}
 	
 	// whether item is expired by today

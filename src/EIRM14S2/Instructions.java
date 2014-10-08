@@ -124,6 +124,12 @@ public class Instructions {
 					parameters.add(key+Constants.keyValueSeparator+data);
 				}
 				break;
+			case 10: 
+				data=data.trim().substring(5).trim();
+				if (Constants.priceP.matcher(data).matches()){
+					parameters.add(key+Constants.keyValueSeparator+data.substring(1));
+				}
+				break;
 			default:
 				System.out.println("invalid field value found "+data);
 		}

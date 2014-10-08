@@ -99,6 +99,9 @@ public class tools {
 				case 9:
 					product.setLocation(fieldValues[1]);
 					break;
+				case 10:
+					product.setUnitPrice(Float.parseFloat(fieldValues[1]));
+					break;
 				default:
 					System.out.println("invalid field value found "+fieldValues[0]);
 			}

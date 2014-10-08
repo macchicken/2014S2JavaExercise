@@ -60,15 +60,17 @@ public class Inventory {
 		if (product.isValidProduct()){
 			int quantity=product.getQuantity();
 			Product original=store.get(product.getSerialId());
-			float curunitPrice = 0;
-			if (quantity!=0) {curunitPrice=product.getBoughtat()/quantity;}
+			float curunitPrice = product.getUnitPrice();
+			if (quantity!=0&&curunitPrice==0){curunitPrice=product.getBoughtat()/quantity;}
 			float preUnitPrice=0;
 			if (original!=null){
 				quantity+=original.getQuantity();
 				preUnitPrice=original.getUnitPrice();
 			}
 			float unitPrice;
-			if (preUnitPrice!=0&&curunitPrice!=0){unitPrice=(preUnitPrice+curunitPrice)/2;}
+			if (preUnitPrice != 0 && curunitPrice != 0&& preUnitPrice != curunitPrice) {
+				unitPrice = (preUnitPrice + curunitPrice) / 2;
+			}
 			else{unitPrice=preUnitPrice==0?curunitPrice:preUnitPrice;}
 			product.setUnitPrice(unitPrice);
 			product.setQuantity(quantity);

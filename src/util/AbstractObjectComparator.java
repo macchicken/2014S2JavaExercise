@@ -10,10 +10,7 @@ public abstract class AbstractObjectComparator implements Comparator<Object> {
 		return key;
 	}
 
-	@Override
-	public int compare(Object o1, Object o2) {
-		return 0;
-	}
+	public abstract int compare(Object o1, Object o2);
 	
 	public void setKey(String key) {
 		this.key = key;

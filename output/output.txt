@@ -6,6 +6,7 @@ soldon: Sun Apr 06 00:00:00 CST 2014
 useby: Fri Dec 12 00:00:00 CST 2014
 boughtat: $3.56
 soldat: $4.56
+price: $0.0356
 location: 
 
 product: Transistor Radios
@@ -16,6 +17,7 @@ soldon: null
 useby: null
 boughtat: $0.0
 soldat: $0.0
+price: $32.32
 location: Akihabara Tokyo Japan (East)
 
 product: Apple iphoneX
@@ -26,6 +28,7 @@ soldon: null
 useby: null
 boughtat: $0.0
 soldat: $0.0
+price: $0.0
 location: 10 Downing Street London England
 
 product: Nissan 370Z
@@ -36,6 +39,7 @@ soldon: null
 useby: null
 boughtat: $0.0
 soldat: $0.0
+price: $0.0
 location: Mr Little's car yard Parramatta Road Ashfield NSW
 
 product: sugar2
@@ -46,6 +50,7 @@ soldon: null
 useby: Mon Dec 01 00:00:00 CST 2014
 boughtat: $3.57
 soldat: $0.0
+price: $0.01785
 location: 
 
 product: sauce pan
@@ -56,6 +61,7 @@ soldon: null
 useby: null
 boughtat: $19.99
 soldat: $0.0
+price: $1.999
 location: 
 
 product: Weetbix flakes
@@ -66,5 +72,6 @@ soldon: null
 useby: null
 boughtat: $0.0
 soldat: $0.0
+price: $0.0
 location: Woolies Supermarket Marrackville Sydney NSW Australia
 

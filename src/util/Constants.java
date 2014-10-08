@@ -17,6 +17,7 @@ public class Constants {
 		put("quantity",7);
 		put("serial",8);
 		put("location",9);
+		put("price",10);
 		}
 	};
 	
