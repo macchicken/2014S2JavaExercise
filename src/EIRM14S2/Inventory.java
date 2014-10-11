@@ -16,6 +16,7 @@ public class Inventory {
 	private HashMap<String,Product> store=new HashMap<String,Product>();
 	private static Inventory my;
 	private String defaultOuptput="output\\output.txt";
+	private String sortKey;
 	
 	public static Inventory getInstance(){
 		if (my==null){
@@ -28,6 +29,10 @@ public class Inventory {
 		return store;
 	}
 	
+	public void setSortKey(String sortKey) {
+		this.sortKey = sortKey;
+	}
+
 	// query the product with a product name
 	public Product queryProductByKey(String key){
 		Product pro=store.get(key);
@@ -157,6 +162,7 @@ public class Inventory {
 		return result;
 	}
 
+	// for debug
 	public void printStore(){
 		for (Product pro:store.values()){
 			System.out.println(pro);
@@ -172,11 +178,19 @@ public class Inventory {
 		FileOutputStream output=null;
 		try {
 			output=new FileOutputStream(fileName);
-			Collection<Product> products=store.values();
-			for (Product pro:products){
-				if (!pro.isDiscarded()) {
-					output.write(pro.toString().getBytes());
+			if (sortKey!=null) {
+				ArrayList<String> sortResult = sort(sortKey);
+				for (String words : sortResult) {
+					output.write(words.getBytes());
 					output.write("\n\n".getBytes());
+				}
+			} else {
+				Collection<Product> products = store.values();
+				for (Product pro : products) {
+					if (!pro.isDiscarded()) {
+						output.write(pro.toString().getBytes());
+						output.write("\n\n".getBytes());
+					}
 				}
 			}
 		} catch (IOException e) {

@@ -291,16 +291,19 @@ public class Instructions {
 		}
 	}
 	
-	//print the sort result to the console
+	//set the key for sorting, sort the records while exporting to file
 	private void sort(String cmd,Inventory store){
 		String key=cmd.substring(4).trim();
 		if ("serial ID".equals(key)){key="serial";}
 		if (Constants.fieldMapping.containsKey(key)){
-			ArrayList<String> sortResult=store.sort(key);
+			/*ArrayList<String> sortResult=store.sort(key);
 			for (String words:sortResult){
 				System.out.println(words);
 				System.out.println();
-			}
+			}*/
+			store.setSortKey(key);
+		}else{
+			System.out.println("invalid field for sorting "+key);
 		}
 	}
 
