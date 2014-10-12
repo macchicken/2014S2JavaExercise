@@ -23,9 +23,12 @@ public class Instructions {
 	private String defaultReport="output\\report.txt";
 	private boolean instrsOk=false;
 	
-
 	
-	//save the data of store file into the database
+	/**
+	 * save the data of store file into the store
+	 * @param inventoryfile - a products file
+	 * @param store - the database of store
+	 */
 	public void readIntoStore(String inventoryfile,Inventory store){
 		BufferedReader buff = null;
 		try {
@@ -58,7 +61,12 @@ public class Instructions {
 		}
 	}
 	
-	//pre-build the date with a defined format,so can use easily afterwards
+	/**
+	 * pre-build the data with a defined format,so can use easily afterwards
+	 * @param data - a line of data in the file
+	 * @param parameters - attributes of a product
+	 * @throws ParseException
+	 */
 	private void processData(String data,ArrayList<String> parameters) throws ParseException{
 		String key=data.split(Constants.valueSeparator)[0];
 		Integer field=Constants.fieldMapping.get(key);
@@ -135,7 +143,10 @@ public class Instructions {
 		}
 	}
 
-	//read and refine the instructions list into a collection of instructions
+	/**
+	 * read and refine the instructions list into a collection of instructions
+	 * @param instrFile - an instructions file
+	 */
 	public void readInstrs(String instrFile){
 		BufferedReader buff = null;
 		try {
@@ -162,6 +173,12 @@ public class Instructions {
 		instrsOk=true;
 	}
 	
+	/**
+	 * refine instructions if an instruction written in multiple lines
+	 * @param data - a line of data in the file
+	 * @param cmd - a line of command in the file
+	 * @return an instruction
+	 */
 	private String refineInstrs(String data,String cmd){
 		boolean validCmd=data.startsWith("buy")||data.startsWith("sell")||
 				data.startsWith("sort")||data.startsWith("discard")||data.startsWith("query");
@@ -175,6 +192,12 @@ public class Instructions {
 		return cmd;
 	}
 	
+	/**
+	 *  deal with a buy instruction
+	 * @param cmd - an instruction
+	 * @param store - the database of store
+	 * @param tradeRecords - the database of trade records
+	 */
 	private void buy(String cmd,Inventory store,TradeRecords tradeRecords){
 		ArrayList<String> parameters=new ArrayList<String>();
 		String[] data=cmd.substring(3).trim().split(Constants.commonSeparator);
@@ -188,6 +211,12 @@ public class Instructions {
 		tradeRecords.processBuyTrade(parameters, store);
 	}
 	
+	/**
+	 * deal with a sell instruction
+	 * @param cmd - an instruction
+	 * @param store - the database of store
+	 * @param tradeRecords - the database of trade records
+	 */
 	private void sell(String cmd,Inventory store,TradeRecords tradeRecords){
 		ArrayList<String> parameters=new ArrayList<String>();
 		String[] data=cmd.substring(4).trim().split(Constants.commonSeparator);
@@ -201,6 +230,11 @@ public class Instructions {
 		tradeRecords.processSellTrade(parameters, store);
 	}
 	
+	/**
+	 * discard the items
+	 * @param cmd - an instruction
+	 * @param store - the database of store
+	 */
 	private void discard(String cmd,Inventory store){
 		String parameter=cmd.substring(7).trim();
 		if (Constants.dateP.matcher(parameter).matches()){
@@ -213,6 +247,12 @@ public class Instructions {
 		}
 	}
 	
+	/**
+	 * deal with query
+	 * @param cmd - an instruction
+	 * @param store - the database of store
+	 * @param tradeRecords - the database of trade records
+	 */
 	private void query(String cmd,Inventory store,TradeRecords tradeRecords){
 		java.util.Scanner cmdSc=new java.util.Scanner(cmd);
 		cmdSc.next();
@@ -291,7 +331,11 @@ public class Instructions {
 		}
 	}
 	
-	//set the key for sorting, sort the records while exporting to file
+	/**
+	 * set the key for sorting, sort the records while exporting to file
+	 * @param cmd - an instruction
+	 * @param store - the database of trade records
+	 */
 	private void sort(String cmd,Inventory store){
 		String key=cmd.substring(4).trim();
 		if ("serial ID".equals(key)){key="serial";}
@@ -307,6 +351,11 @@ public class Instructions {
 		}
 	}
 
+	/**
+	 * process the command in the instruction file
+	 * @param store - the database of store
+	 * @param tradeRecords - the database of trade records
+	 */
 	public void processCmds(Inventory store,TradeRecords tradeRecords){
 		if (!instrsOk){System.out.println("some error occur while processing instrunction file");}
 		else{
@@ -335,7 +384,10 @@ public class Instructions {
 		}
 	}
 	
-	//write the query results to a file
+	/**
+	 * write the query results to a file
+	 * @param fileName - a report file
+	 */
 	public void exportToFile(String fileName){
 		if (fileName==null||"".equals(fileName)){fileName=defaultReport;}
 		FileOutputStream output=null;

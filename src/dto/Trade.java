@@ -35,7 +35,17 @@ public class Trade {
 	public String getProductSerialID() {
 		return productSerialID;
 	}
-	//trade and calculate the profit gain,then save the trade details
+
+	/**
+	 * save the trade detail
+	 * @param tradeProduct - product name
+	 * @param productSerialID
+	 * @param quantityBegin - quantity before selling
+	 * @param soldQuantity - amount of item for selling
+	 * @param purchase - purchase price
+	 * @param sold - sold price
+	 * @param tradeTime
+	 */
 	public void doTrade(String tradeProduct, String productSerialID, int quantityBegin,
 			int soldQuantity, float purchase, float sold, Date tradeTime) {
 		this.profit = sold - purchase;

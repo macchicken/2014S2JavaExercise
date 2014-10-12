@@ -33,15 +33,24 @@ public class Inventory {
 		this.sortKey = sortKey;
 	}
 
-	// query the product with a product name
+	/**
+	 * query the product with a product serial id
+	 * @param key - item serial id
+	 * @return - an item
+	 */
 	public Product queryProductByKey(String key){
 		Product pro=store.get(key);
 		if (pro!=null){return pro.copyProduct();}
 		return null;
 	}
 
-	//update only if existing product with enough quantity and before expire date
-	//return a copy of result product if success
+	/**
+	 * update only if existing product with enough quantity
+	 * before expire date and not been discarded
+	 * @param key - item serial id
+	 * @param pro - the target item
+	 * @return a copy of result product if success
+	 */
 	public Product updateStore(String key,Product pro){
 		Product temp=null;
 		if ((temp=store.get(key))!=null){
@@ -59,7 +68,12 @@ public class Inventory {
 		return null;
 	}
 	
-	// add a specific product to store with pre-defined conditions
+
+	/**
+	 * add a specific product to store with pre-defined conditions do not check
+	 * the discarded here, because we could buy some replaced items
+	 * @param parameters - the attributes of an item
+	 */
 	public void addProduct(ArrayList<String> parameters){
 		Product product=tools.transDataToProduct(parameters);
 		if (product.isValidProduct()){
@@ -83,7 +97,11 @@ public class Inventory {
 		}
 	}
 	
-	//discard products according to a date
+	/**
+	 * discard products according to a date
+	 * delete the items logically by only update the discarded flag
+	 * @param date - time
+	 */
 	public void discardProduct(Date date){
 		Collection<Product> products=store.values();
 		for (Product pro:products){
@@ -93,7 +111,11 @@ public class Inventory {
 		}
 	}
 	
-	//get a list of products available on a given date and sort by USEBY
+	/**
+	 * get a sorted list of products available on a given date
+	 * @param date - the time when products still available
+	 * @return a list sorted by USERBY
+	 */
 	public LinkedList<String> queryProductbyDate(Date date){
 		LinkedList<String> result=new LinkedList<String>();
 		String temp="";
@@ -123,7 +145,11 @@ public class Inventory {
 		return result;
 	}
 	
-	// query the products would be expired on a given date
+	/**
+	 * query the products would be expired on a given date
+	 * @param date - time
+	 * @return a list of products
+	 */
 	public LinkedList<Product> queryExpiredProducts(Date date){
 		Collection<Product> products=store.values();
 		LinkedList<Product> expiredL=new LinkedList<Product>();
@@ -135,7 +161,7 @@ public class Inventory {
 		return expiredL;
 	}
 	
-	/*	
+	/**
 	 * sort the products in the store with a specific field
 	 * @param key field
 	 * @return string representation of products
@@ -162,7 +188,9 @@ public class Inventory {
 		return result;
 	}
 
-	// for debug
+	/**
+	 * for debug, print the current state of store database
+	 */
 	public void printStore(){
 		for (Product pro:store.values()){
 			System.out.println(pro);
@@ -170,7 +198,10 @@ public class Inventory {
 		}
 	}
 	
-	//save store info to a file
+	/**
+	 * save store info to a file
+	 * @param fileName - target file to save
+	 */
 	public void saveToFile(String fileName){
 		if (fileName==null||"".equals(fileName.trim())){
 			fileName=defaultOuptput;

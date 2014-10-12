@@ -28,7 +28,11 @@ public class TradeRecords {
 		return my;
 	}
 	
-	// the action for selling products
+	/**
+	 * the action for selling products,save the records
+	 * @param parameters - a target item
+	 * @param store - the database of store
+	 */
 	public void processSellTrade(ArrayList<String> parameters,Inventory store){
 		Product sellPro=tools.transDataToProduct(parameters);
 		if (sellPro.isValidProduct()&&sellPro.getSoldat()!=0&&sellPro.getSoldon()!=null){
@@ -50,11 +54,22 @@ public class TradeRecords {
 		}
 	}
 	
-	// the action for buying products
+	/**
+	 * the action for buying products
+	 * @param parameters - a target item
+	 * @param store - the database of store
+	 */
 	public void processBuyTrade(ArrayList<String> parameters,Inventory store){
 		store.addProduct(parameters);
 	}
 	
+	/**
+	 * calculate the return of asset(ROA) for a collection of items
+	 * during a period of time
+	 * @param begin - time
+	 * @param end - time
+	 * @return - a list of items with their ROA
+	 */
 	public String[] calculateRoa(Date begin,Date end){
 		Collection<LinkedList<Trade>> tradesC=records.values();
 		HashMap<String,Float> productProfits=new HashMap<String,Float>();
@@ -96,6 +111,13 @@ public class TradeRecords {
 		return productRoa;
 	}
 
+	/**
+	 * calculate the total profit during a period of time
+	 * @param begin - time
+	 * @param end - time
+	 * @param store - the database of store
+	 * @return - total profit
+	 */
 	public float calculateTotalProfit(Date begin,Date end,Inventory store){
 		Collection<LinkedList<Trade>> tradesC=records.values();
 		float totalProfit=0;
@@ -109,7 +131,13 @@ public class TradeRecords {
 		return totalProfit;
 	}
 	
-	//actions for system query profit for a period of time
+	/**
+	 * actions for system query profit for a period of time
+	 * @param begin - time
+	 * @param end - time
+	 * @param store - the database of store
+	 * @return - a statement of query result
+	 */
 	public LinkedList<String> queryProfit(Date begin,Date end,Inventory store){
 		float totalProfit=calculateTotalProfit(begin, end, store);
 		LinkedList<Product> expiredL=store.queryExpiredProducts(end);

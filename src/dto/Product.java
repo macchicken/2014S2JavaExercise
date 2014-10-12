@@ -22,6 +22,9 @@ public class Product {
 		super();
 	}
 	
+	/**
+	 * @return a copy of a product
+	 */
 	public Product copyProduct() {
 		Product another=new Product();
 		another.setProductName(this.productName);
@@ -112,19 +115,29 @@ public class Product {
 				"\nlocation: "+location;
 	}
 	
-	// whether item is expired by today
+	/**
+	 * whether item is expired by today
+	 * @return true expired
+	 */
 	public boolean isExpired(){
 		if (this.useby==null){return false;}
 		Calendar now=Calendar.getInstance();
 		return isExpiredByDate(now.getTime());
 	}
 	
-	// whether item is expired by a given date
+	/**
+	 * whether item is expired by a given date
+	 * @param date - time
+	 * @return true expired
+	 */
 	public boolean isExpiredByDate(Date date){
 		if (this.useby==null){return false;}
 		return this.useby.before(date);
 	}
 
+	/**
+	 * @return true if product name and serial id both has value
+	 */
 	public boolean isValidProduct(){
 		return !"".equals(productName)&&!"".equals(serialId);
 	}
