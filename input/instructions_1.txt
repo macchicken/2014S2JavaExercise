@@ -1,4 +1,4 @@
-buy product milk; serial ID 2014mi; boughton 31-3-2014; useby 5-4-2014;
+buy product milk; serial ID 2014mi; boughton 31-3-2014; useby 5-7-2014;
 boughtat $4.63; quantity 100
 sell product coffee; serial ID 3975co; soldon 4-4-2014; soldat $9.88;
 quantity 2

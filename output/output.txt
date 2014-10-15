@@ -20,6 +20,17 @@ soldat: $4.56
 price: $0.0356
 location: 
 
+product: milk
+serial ID: 2014mi
+quantity: 100
+boughton: Mon Mar 31 00:00:00 CST 2014
+soldon: null
+useby: Sat Jul 05 00:00:00 CST 2014
+boughtat: $4.63
+soldat: $0.0
+price: $0.0463
+location: 
+
 product: sugar2
 serial ID: 2975su
 quantity: 200

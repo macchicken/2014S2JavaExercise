@@ -6,20 +6,19 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.NoSuchElementException;
 
-import util.Constants;
 import util.tools;
+import EIRM14S2.service.CommandBus;
+import EIRM14S2.service.CommandGateWay;
 
 
 
 public class Instructions {
 	
 	private ArrayList<String> cmds=new ArrayList<String>();
-	private HashMap<String,LinkedList<String>> cmdResult=new HashMap<String,LinkedList<String>>();
+	private static HashMap<String,LinkedList<String>> cmdResult=new HashMap<String,LinkedList<String>>();
 	private String defaultReport="output\\report.txt";
 	private boolean instrsOk=false;
 	
@@ -39,7 +38,7 @@ public class Instructions {
 				while((oneLine=buff.readLine())!=null){
 					oneLine=oneLine.trim();
 					if (!oneLine.equals("")){
-						processData(oneLine,parameters);
+						tools.processData(oneLine,parameters);
 					}
 					if (oneLine.equals("")){
 						store.addProduct(parameters);
@@ -61,88 +60,6 @@ public class Instructions {
 		}
 	}
 	
-	/**
-	 * pre-build the data with a defined format,so can use easily afterwards
-	 * @param data - a line of data in the file
-	 * @param parameters - attributes of a product
-	 * @throws ParseException
-	 */
-	private void processData(String data,ArrayList<String> parameters) throws ParseException{
-		String key=data.split(Constants.valueSeparator)[0];
-		Integer field=Constants.fieldMapping.get(key);
-		if (field==null){
-			System.out.println("invalid field found "+data);
-			return;
-		}
-		switch(field){
-			case 1: 
-				data=data.trim().substring(7).trim();
-				if (Constants.nameP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data);
-				}
-				break;
-			case 2: 
-				data=data.trim().substring(8).trim();
-				if (Constants.dateP.matcher(data).matches()){
-					String result=tools.refineDateStr(data);
-					parameters.add(key+Constants.keyValueSeparator+result);
-				}
-				break;
-			case 3: 
-				data=data.trim().substring(6).trim();
-				if (Constants.dateP.matcher(data).matches()){
-					String result=tools.refineDateStr(data);
-					parameters.add(key+Constants.keyValueSeparator+result);
-				}
-				break;
-			case 4: 
-				data=data.trim().substring(5).trim();
-				if (Constants.dateP.matcher(data).matches()){
-					String result=tools.refineDateStr(data);
-					parameters.add(key+Constants.keyValueSeparator+result);
-				}
-				break;
-			case 5: 
-				data=data.trim().substring(8).trim();
-				if (Constants.priceP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data.substring(1));
-				}
-				break;
-			case 6: 
-				data=data.trim().substring(6).trim();
-				if (Constants.priceP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data.substring(1));
-				}
-				break;
-			case 7: 
-				data=data.trim().substring(8).trim();
-				if (Constants.numP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data);
-				}
-				break;
-			case 8: 
-				data=data.trim().substring(10).trim();
-				if (Constants.idP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data);
-				}
-				break;
-			case 9: 
-				data=data.trim().substring(9).trim();
-				if (Constants.addressP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data);
-				}
-				break;
-			case 10: 
-				data=data.trim().substring(5).trim();
-				if (Constants.priceP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data.substring(1));
-				}
-				break;
-			default:
-				System.out.println("invalid field value found "+data);
-		}
-	}
-
 	/**
 	 * read and refine the instructions list into a collection of instructions
 	 * @param instrFile - an instructions file
@@ -193,165 +110,6 @@ public class Instructions {
 	}
 	
 	/**
-	 *  deal with a buy instruction
-	 * @param cmd - an instruction
-	 * @param store - the database of store
-	 * @param tradeRecords - the database of trade records
-	 */
-	private void buy(String cmd,Inventory store,TradeRecords tradeRecords){
-		ArrayList<String> parameters=new ArrayList<String>();
-		String[] data=cmd.substring(3).trim().split(Constants.commonSeparator);
-		for (String p:data){
-			try {
-				processData(p.trim(),parameters);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
-		tradeRecords.processBuyTrade(parameters, store);
-	}
-	
-	/**
-	 * deal with a sell instruction
-	 * @param cmd - an instruction
-	 * @param store - the database of store
-	 * @param tradeRecords - the database of trade records
-	 */
-	private void sell(String cmd,Inventory store,TradeRecords tradeRecords){
-		ArrayList<String> parameters=new ArrayList<String>();
-		String[] data=cmd.substring(4).trim().split(Constants.commonSeparator);
-		for (String p:data){
-			try {
-				processData(p.trim(),parameters);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
-		tradeRecords.processSellTrade(parameters, store);
-	}
-	
-	/**
-	 * discard the items
-	 * @param cmd - an instruction
-	 * @param store - the database of store
-	 */
-	private void discard(String cmd,Inventory store){
-		String parameter=cmd.substring(7).trim();
-		if (Constants.dateP.matcher(parameter).matches()){
-			try {
-				Date date=Constants.dateFormat.parse(tools.refineDateStr(parameter));
-				store.discardProduct(date);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	/**
-	 * deal with query
-	 * @param cmd - an instruction
-	 * @param store - the database of store
-	 * @param tradeRecords - the database of trade records
-	 */
-	private void query(String cmd,Inventory store,TradeRecords tradeRecords){
-		java.util.Scanner cmdSc=new java.util.Scanner(cmd);
-		cmdSc.next();
-		String parameter="";
-		try {
-			parameter = cmdSc.next();
-		} catch (NoSuchElementException e1) {
-			System.out.println("for query,must be a date string following");
-			cmdSc.close();
-			return;
-		}
-		if (Constants.dateP.matcher(parameter).matches()){
-			cmdSc.close();
-			try {
-				Date date=Constants.dateFormat.parse(tools.refineDateStr(parameter));
-				cmdResult.put("queryAvailable",store.queryProductbyDate(date));
-			} catch (ParseException e) {
-				System.out.println("not in the date format dd-MM-(yy)yy");
-				return;
-			}
-		}else if (parameter.equals("bestsales")||parameter.equals("worstsales")){
-			Date begin = null,end = null;
-			boolean best=false;
-			try {
-				if (parameter.equals("bestsales")){best=true;}
-				begin=tools.formatDateString(cmdSc.next());
-				end=tools.formatDateString(cmdSc.next());
-			}catch (ParseException e) {
-				System.out.println("for bestsales or worstsales query please enter the date in format dd-MM-yyyy");
-				return;
-			}catch (NoSuchElementException nf){
-				System.out.println("for bestsales or worstsales query please enter the 2 dates");
-				return;
-			}
-			finally{cmdSc.close();}
-			String[] productRoa=tradeRecords.calculateRoa(begin,end);
-			if (productRoa.length!=0){
-				String[] pair=productRoa[0].split(Constants.commonSeparator);
-				float roa=Float.parseFloat(pair[1]);
-				String productName=pair[0];
-				for (int i=1;i<productRoa.length;i++){
-					pair=productRoa[i].split(Constants.commonSeparator);
-					if (best){
-						if (roa<=Float.parseFloat(pair[1])){
-							roa=Float.parseFloat(pair[1]);
-							productName=pair[0];
-						}
-					}else{
-						if (roa>=Float.parseFloat(pair[1])){
-							roa=Float.parseFloat(pair[1]);
-							productName=pair[0];
-						}
-					}
-				}
-				String words = "";
-				LinkedList<String> result=new LinkedList<String>();
-				if (best) {words = "best sales";
-				}else{words = "worst sales";}
-				words += " product of time peroid " + Constants.datef.format(begin) + " - "
-						+ Constants.datef.format(end) + " is " + productName+ " with ROA " + roa;
-				result.add(words);
-				cmdResult.put("queryroa",result);
-			}
-		}else if (parameter.equals("profit")){
-			try {
-				Date begin=tools.formatDateString(cmdSc.next());
-				Date end=tools.formatDateString(cmdSc.next());
-				LinkedList<String> result=tradeRecords.queryProfit(begin, end, store);
-				cmdResult.put("queryprofit", result);
-			} catch (ParseException e) {
-				System.out.println("for profit query please enter 2 dates in format dd-MM-yyyy");
-			} catch (NoSuchElementException nf){
-				System.out.println("for profit query please enter 2 dates in format dd-MM-yyyy");
-			}
-			finally{cmdSc.close();}
-		}
-	}
-	
-	/**
-	 * set the key for sorting, sort the records while exporting to file
-	 * @param cmd - an instruction
-	 * @param store - the database of trade records
-	 */
-	private void sort(String cmd,Inventory store){
-		String key=cmd.substring(4).trim();
-		if ("serial ID".equals(key)){key="serial";}
-		if (Constants.fieldMapping.containsKey(key)){
-			/*ArrayList<String> sortResult=store.sort(key);
-			for (String words:sortResult){
-				System.out.println(words);
-				System.out.println();
-			}*/
-			store.setSortKey(key);
-		}else{
-			System.out.println("invalid field for sorting "+key);
-		}
-	}
-
-	/**
 	 * process the command in the instruction file
 	 * @param store - the database of store
 	 * @param tradeRecords - the database of trade records
@@ -359,27 +117,15 @@ public class Instructions {
 	public void processCmds(Inventory store,TradeRecords tradeRecords){
 		if (!instrsOk){System.out.println("some error occur while processing instrunction file");}
 		else{
+			CommandBus cb;
+			CommandGateWay cgw=new CommandGateWay();
 			for (String cmd:cmds){
-				if (cmd.startsWith("buy")){
-					buy(cmd,store, tradeRecords);
-					continue;
-				}
-				if (cmd.startsWith("sell")){
-					sell(cmd,store,tradeRecords);
-					continue;
-				}
-				if (cmd.startsWith("discard")){
-					discard(cmd,store);
-					continue;
-				}
-				if (cmd.startsWith("query")){
-					query(cmd,store,tradeRecords);
-					continue;
-				}
-				if (cmd.startsWith("sort")){
-					sort(cmd,store);
-					continue;
-				}
+				cb=cgw.commandService(cmd);
+				if (cb!=null) {
+					cb.setStore(store);
+					cb.setTradeRecords(tradeRecords);
+					cb.process(cmd);
+				}else{System.out.println(cmd+" is not supported");}
 			}
 		}
 	}
@@ -409,6 +155,10 @@ public class Instructions {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public static void addCmdResult(String key, LinkedList<String> value){
+		cmdResult.put(key, value);
 	}
 
 

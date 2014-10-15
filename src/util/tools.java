@@ -109,5 +109,87 @@ public class tools {
 		return product;
 	}
 
+	/**
+	 * pre-build the data with a defined format,so can use easily afterwards
+	 * @param data - a line of data in the file
+	 * @param parameters - attributes of a product
+	 * @throws ParseException
+	 */
+	public static void processData(String data,ArrayList<String> parameters) throws ParseException{
+		String key=data.split(Constants.valueSeparator)[0];
+		Integer field=Constants.fieldMapping.get(key);
+		if (field==null){
+			System.out.println("invalid field found "+data);
+			return;
+		}
+		switch(field){
+			case 1: 
+				data=data.trim().substring(7).trim();
+				if (Constants.nameP.matcher(data).matches()){
+					parameters.add(key+Constants.keyValueSeparator+data);
+				}
+				break;
+			case 2: 
+				data=data.trim().substring(8).trim();
+				if (Constants.dateP.matcher(data).matches()){
+					String result=tools.refineDateStr(data);
+					parameters.add(key+Constants.keyValueSeparator+result);
+				}
+				break;
+			case 3: 
+				data=data.trim().substring(6).trim();
+				if (Constants.dateP.matcher(data).matches()){
+					String result=tools.refineDateStr(data);
+					parameters.add(key+Constants.keyValueSeparator+result);
+				}
+				break;
+			case 4: 
+				data=data.trim().substring(5).trim();
+				if (Constants.dateP.matcher(data).matches()){
+					String result=tools.refineDateStr(data);
+					parameters.add(key+Constants.keyValueSeparator+result);
+				}
+				break;
+			case 5: 
+				data=data.trim().substring(8).trim();
+				if (Constants.priceP.matcher(data).matches()){
+					parameters.add(key+Constants.keyValueSeparator+data.substring(1));
+				}
+				break;
+			case 6: 
+				data=data.trim().substring(6).trim();
+				if (Constants.priceP.matcher(data).matches()){
+					parameters.add(key+Constants.keyValueSeparator+data.substring(1));
+				}
+				break;
+			case 7: 
+				data=data.trim().substring(8).trim();
+				if (Constants.numP.matcher(data).matches()){
+					parameters.add(key+Constants.keyValueSeparator+data);
+				}
+				break;
+			case 8: 
+				data=data.trim().substring(10).trim();
+				if (Constants.idP.matcher(data).matches()){
+					parameters.add(key+Constants.keyValueSeparator+data);
+				}
+				break;
+			case 9: 
+				data=data.trim().substring(9).trim();
+				if (Constants.addressP.matcher(data).matches()){
+					parameters.add(key+Constants.keyValueSeparator+data);
+				}
+				break;
+			case 10: 
+				data=data.trim().substring(5).trim();
+				if (Constants.priceP.matcher(data).matches()){
+					parameters.add(key+Constants.keyValueSeparator+data.substring(1));
+				}
+				break;
+			default:
+				System.out.println("invalid field value found "+data);
+		}
+	}
+
 
 }
