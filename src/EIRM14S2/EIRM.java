@@ -1,5 +1,9 @@
 package EIRM14S2;
 
+import EIRM14S2.repository.Inventory;
+import EIRM14S2.repository.TradeRecords;
+
+
 public class EIRM {
 
 	public static void main(String[] args) {

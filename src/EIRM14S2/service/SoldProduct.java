@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import util.Constants;
 import util.tools;
-import EIRM14S2.Inventory;
-import EIRM14S2.TradeRecords;
+import EIRM14S2.repository.Inventory;
+import EIRM14S2.repository.TradeRecords;
 
 public class SoldProduct implements CommandBus {
 

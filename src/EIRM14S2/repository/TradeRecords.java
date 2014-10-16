@@ -1,4 +1,4 @@
-package EIRM14S2;
+package EIRM14S2.repository;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;

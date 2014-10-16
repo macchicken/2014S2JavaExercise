@@ -12,6 +12,8 @@ import java.util.LinkedList;
 import util.tools;
 import EIRM14S2.service.CommandBus;
 import EIRM14S2.service.CommandGateWay;
+import EIRM14S2.repository.Inventory;
+import EIRM14S2.repository.TradeRecords;
 
 
 
