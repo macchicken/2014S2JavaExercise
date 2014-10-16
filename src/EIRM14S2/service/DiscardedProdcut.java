@@ -25,7 +25,7 @@ public class DiscardedProdcut implements CommandBus {
 				Date date=Constants.dateFormat.parse(tools.refineDateStr(parameter));
 				store.discardProduct(date);
 			} catch (ParseException e) {
-				e.printStackTrace();
+				System.out.println("some date parse errors ocuur "+e.getMessage());
 			}
 		}
 	}

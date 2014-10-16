@@ -111,6 +111,7 @@ public class Instructions {
 	
 	/**
 	 * process the command in the instruction file
+	 * different command process is in the specific class
 	 * @param store - the database of store
 	 * @param tradeRecords - the database of trade records
 	 */

@@ -26,7 +26,7 @@ public class BoughtProdcut implements CommandBus {
 			try {
 				tools.processData(p.trim(),parameters);
 			} catch (ParseException e) {
-				e.printStackTrace();
+				System.out.println("some date parse errors ocuur "+e.getMessage());
 			}
 		}
 		tradeRecords.processBuyTrade(parameters, store);
