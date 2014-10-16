@@ -1,4 +1,4 @@
-package tutorial.tutorial.tutorial11Week11;
+package tutorial.tutorial11Week11;
 
 public class Triangle implements Shape {
 

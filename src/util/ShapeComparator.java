@@ -1,6 +1,6 @@
 package util;
 
-import tutorial.tutorial.tutorial11Week11.Shape;
+import tutorial.tutorial11Week11.Shape;
 
 public class ShapeComparator extends AbstractObjectComparator {
 

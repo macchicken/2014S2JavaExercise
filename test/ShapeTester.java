@@ -9,11 +9,11 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
-import tutorial.tutorial.tutorial11Week11.Rectangle;
-import tutorial.tutorial.tutorial11Week11.Shape;
-import tutorial.tutorial.tutorial11Week11.Circle;
-import tutorial.tutorial.tutorial11Week11.SortShapes;
-import tutorial.tutorial.tutorial11Week11.Triangle;
+import tutorial.tutorial11Week11.Circle;
+import tutorial.tutorial11Week11.Rectangle;
+import tutorial.tutorial11Week11.Shape;
+import tutorial.tutorial11Week11.SortShapes;
+import tutorial.tutorial11Week11.Triangle;
 
 @RunWith(Parameterized.class)
 public class ShapeTester {
