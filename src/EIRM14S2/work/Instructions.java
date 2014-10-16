@@ -1,4 +1,4 @@
-package EIRM14S2;
+package EIRM14S2.work;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;

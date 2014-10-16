@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 
 import util.Constants;
 import util.tools;
-import EIRM14S2.Instructions;
+import EIRM14S2.work.Instructions;
 import EIRM14S2.repository.Inventory;
 import EIRM14S2.repository.TradeRecords;
 

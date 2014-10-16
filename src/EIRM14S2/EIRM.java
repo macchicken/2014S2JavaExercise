@@ -2,6 +2,7 @@ package EIRM14S2;
 
 import EIRM14S2.repository.Inventory;
 import EIRM14S2.repository.TradeRecords;
+import EIRM14S2.work.Instructions;
 
 
 public class EIRM {
