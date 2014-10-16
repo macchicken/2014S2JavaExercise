@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 
 import util.Constants;
 import util.tools;
-import EIRM14S2.work.Instructions;
+import EIRM14S2.repository.CommandResult;
 import EIRM14S2.repository.Inventory;
 import EIRM14S2.repository.TradeRecords;
 
@@ -26,6 +26,7 @@ public class QueryData implements CommandBus {
 		java.util.Scanner cmdSc=new java.util.Scanner(cmd);
 		cmdSc.next();
 		String parameter="";
+		CommandResult cmdResult=CommandResult.getInstance();
 		try {
 			parameter = cmdSc.next();
 		} catch (NoSuchElementException e1) {
@@ -37,7 +38,7 @@ public class QueryData implements CommandBus {
 			cmdSc.close();
 			try {
 				Date date=Constants.dateFormat.parse(tools.refineDateStr(parameter));
-				Instructions.addCmdResult("queryAvailable",store.queryProductbyDate(date));
+				cmdResult.addResult("queryAvailable", store.queryProductbyDate(date));
 			} catch (ParseException e) {
 				System.out.println("not in the date format dd-MM-(yy)yy");
 				return;
@@ -83,14 +84,14 @@ public class QueryData implements CommandBus {
 				words += " product of time peroid " + Constants.datef.format(begin) + " - "
 						+ Constants.datef.format(end) + " is " + productName+ " with ROA " + roa;
 				result.add(words);
-				Instructions.addCmdResult("queryroa",result);
+				cmdResult.addResult("queryroa",result);
 			}
 		}else if (parameter.equals("profit")){
 			try {
 				Date begin=tools.formatDateString(cmdSc.next());
 				Date end=tools.formatDateString(cmdSc.next());
 				LinkedList<String> result=tradeRecords.queryProfit(begin, end, store);
-				Instructions.addCmdResult("queryprofit", result);
+				cmdResult.addResult("queryprofit", result);
 			} catch (ParseException e) {
 				System.out.println("for profit query please enter 2 dates in format dd-MM-yyyy");
 			} catch (NoSuchElementException nf){

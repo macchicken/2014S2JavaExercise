@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 import util.tools;
 import EIRM14S2.service.CommandBus;
 import EIRM14S2.service.CommandGateWay;
+import EIRM14S2.repository.CommandResult;
 import EIRM14S2.repository.Inventory;
 import EIRM14S2.repository.TradeRecords;
 
@@ -20,7 +20,6 @@ import EIRM14S2.repository.TradeRecords;
 public class Instructions {
 	
 	private ArrayList<String> cmds=new ArrayList<String>();
-	private static HashMap<String,LinkedList<String>> cmdResult=new HashMap<String,LinkedList<String>>();
 	private String defaultReport="output\\report.txt";
 	private boolean instrsOk=false;
 	
@@ -142,7 +141,8 @@ public class Instructions {
 		FileOutputStream output=null;
 		try {
 			output=new FileOutputStream(fileName);
-			Collection<LinkedList<String>> results=cmdResult.values();
+			CommandResult cmdResult=CommandResult.getInstance(); 
+			Collection<LinkedList<String>> results=cmdResult.getResults().values();
 			int i=0;
 			for (LinkedList<String> result:results){
 				if (i>0){output.write("---\n".getBytes());}
@@ -158,10 +158,6 @@ public class Instructions {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	public static void addCmdResult(String key, LinkedList<String> value){
-		cmdResult.put(key, value);
 	}
 
 
