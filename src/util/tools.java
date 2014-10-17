@@ -58,52 +58,56 @@ public class tools {
 		Product product=new Product();
 		for (String p:parameters){
 			String[] fieldValues=p.split(Constants.keyValueSeparator);
-			Integer key=Constants.fieldMapping.get(fieldValues[0]);
-			switch(key){
-				case 1:
-					product.setProductName(fieldValues[1]);
-					break;
-				case 2:
-					try {
-						product.setBoughton(Constants.dateFormat.parse(fieldValues[1]));
-					} catch (ParseException e) {
-						System.out.println(e.getMessage());
-					}
-					break;
-				case 3:
-					try {
-						product.setSoldon(Constants.dateFormat.parse(fieldValues[1]));
-					} catch (ParseException e) {
-						System.out.println(e.getMessage());
-					}
-					break;
-				case 4:
-					try {
-						product.setUseby(Constants.dateFormat.parse(fieldValues[1]));
-					} catch (ParseException e) {
-						System.out.println(e.getMessage());
-					}
-					break;
-				case 5:
-					product.setBoughtat(Float.parseFloat(fieldValues[1]));
-					break;
-				case 6:
-					product.setSoldat(Float.parseFloat(fieldValues[1]));
-					break;
-				case 7:
-					product.setQuantity(Integer.parseInt(fieldValues[1]));
-					break;
-				case 8:
-					product.setSerialId(fieldValues[1]);
-					break;
-				case 9:
-					product.setLocation(fieldValues[1]);
-					break;
-				case 10:
-					product.setUnitPrice(Float.parseFloat(fieldValues[1]));
-					break;
-				default:
-					System.out.println("invalid field value found "+fieldValues[0]);
+			try {
+				Constants.FieldMapping fm=Constants.FieldMapping.valueOf(fieldValues[0]);
+				switch(fm){
+					case product:
+						product.setProductName(fieldValues[1]);
+						break;
+					case boughton:
+						try {
+							product.setBoughton(Constants.dateFormat.parse(fieldValues[1]));
+						} catch (ParseException e) {
+							System.out.println(e.getMessage());
+						}
+						break;
+					case soldon:
+						try {
+							product.setSoldon(Constants.dateFormat.parse(fieldValues[1]));
+						} catch (ParseException e) {
+							System.out.println(e.getMessage());
+						}
+						break;
+					case useby:
+						try {
+							product.setUseby(Constants.dateFormat.parse(fieldValues[1]));
+						} catch (ParseException e) {
+							System.out.println(e.getMessage());
+						}
+						break;
+					case boughtat:
+						product.setBoughtat(Float.parseFloat(fieldValues[1]));
+						break;
+					case soldat:
+						product.setSoldat(Float.parseFloat(fieldValues[1]));
+						break;
+					case quantity:
+						product.setQuantity(Integer.parseInt(fieldValues[1]));
+						break;
+					case serial:
+						product.setSerialId(fieldValues[1]);
+						break;
+					case location:
+						product.setLocation(fieldValues[1]);
+						break;
+					case price:
+						product.setUnitPrice(Float.parseFloat(fieldValues[1]));
+						break;
+					default:
+						System.out.println("invalid field value found "+fieldValues[0]);
+				}
+			} catch (IllegalArgumentException e) {
+				System.out.println("invalid field found "+fieldValues[0]);
 			}
 		}
 		return product;
@@ -117,77 +121,77 @@ public class tools {
 	 */
 	public static void processData(String data,ArrayList<String> parameters) throws ParseException{
 		String key=data.split(Constants.valueSeparator)[0];
-		Integer field=Constants.fieldMapping.get(key);
-		if (field==null){
+		try {
+			Constants.FieldMapping fm=Constants.FieldMapping.valueOf(key);
+			switch(fm){
+				case product:
+					data=data.trim().substring(7).trim();
+					if (Constants.nameP.matcher(data).matches()){
+						parameters.add(key+Constants.keyValueSeparator+data);
+					}
+					break;
+				case boughton:
+					data=data.trim().substring(8).trim();
+					if (Constants.dateP.matcher(data).matches()){
+						String result=tools.refineDateStr(data);
+						parameters.add(key+Constants.keyValueSeparator+result);
+					}
+					break;
+				case soldon:
+					data=data.trim().substring(6).trim();
+					if (Constants.dateP.matcher(data).matches()){
+						String result=tools.refineDateStr(data);
+						parameters.add(key+Constants.keyValueSeparator+result);
+					}
+					break;
+				case useby:
+					data=data.trim().substring(5).trim();
+					if (Constants.dateP.matcher(data).matches()){
+						String result=tools.refineDateStr(data);
+						parameters.add(key+Constants.keyValueSeparator+result);
+					}
+					break;
+				case boughtat:
+					data=data.trim().substring(8).trim();
+					if (Constants.priceP.matcher(data).matches()){
+						parameters.add(key+Constants.keyValueSeparator+data.substring(1));
+					}
+					break;
+				case soldat:
+					data=data.trim().substring(6).trim();
+					if (Constants.priceP.matcher(data).matches()){
+						parameters.add(key+Constants.keyValueSeparator+data.substring(1));
+					}
+					break;
+				case quantity:
+					data=data.trim().substring(8).trim();
+					if (Constants.numP.matcher(data).matches()){
+						parameters.add(key+Constants.keyValueSeparator+data);
+					}
+					break;
+				case serial:
+					data=data.trim().substring(10).trim();
+					if (Constants.idP.matcher(data).matches()){
+						parameters.add(key+Constants.keyValueSeparator+data);
+					}
+					break;
+				case location:
+					data=data.trim().substring(9).trim();
+					if (Constants.addressP.matcher(data).matches()){
+						parameters.add(key+Constants.keyValueSeparator+data);
+					}
+					break;
+				case price:
+					data=data.trim().substring(5).trim();
+					if (Constants.priceP.matcher(data).matches()){
+						parameters.add(key+Constants.keyValueSeparator+data.substring(1));
+					}
+					break;
+				default:
+					System.out.println("invalid field value found "+data);
+			}
+		} catch (IllegalArgumentException e) {
 			System.out.println("invalid field found "+data);
-			return;
-		}
-		switch(field){
-			case 1: 
-				data=data.trim().substring(7).trim();
-				if (Constants.nameP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data);
-				}
-				break;
-			case 2: 
-				data=data.trim().substring(8).trim();
-				if (Constants.dateP.matcher(data).matches()){
-					String result=tools.refineDateStr(data);
-					parameters.add(key+Constants.keyValueSeparator+result);
-				}
-				break;
-			case 3: 
-				data=data.trim().substring(6).trim();
-				if (Constants.dateP.matcher(data).matches()){
-					String result=tools.refineDateStr(data);
-					parameters.add(key+Constants.keyValueSeparator+result);
-				}
-				break;
-			case 4: 
-				data=data.trim().substring(5).trim();
-				if (Constants.dateP.matcher(data).matches()){
-					String result=tools.refineDateStr(data);
-					parameters.add(key+Constants.keyValueSeparator+result);
-				}
-				break;
-			case 5: 
-				data=data.trim().substring(8).trim();
-				if (Constants.priceP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data.substring(1));
-				}
-				break;
-			case 6: 
-				data=data.trim().substring(6).trim();
-				if (Constants.priceP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data.substring(1));
-				}
-				break;
-			case 7: 
-				data=data.trim().substring(8).trim();
-				if (Constants.numP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data);
-				}
-				break;
-			case 8: 
-				data=data.trim().substring(10).trim();
-				if (Constants.idP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data);
-				}
-				break;
-			case 9: 
-				data=data.trim().substring(9).trim();
-				if (Constants.addressP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data);
-				}
-				break;
-			case 10: 
-				data=data.trim().substring(5).trim();
-				if (Constants.priceP.matcher(data).matches()){
-					parameters.add(key+Constants.keyValueSeparator+data.substring(1));
-				}
-				break;
-			default:
-				System.out.println("invalid field value found "+data);
 		}
 	}
 

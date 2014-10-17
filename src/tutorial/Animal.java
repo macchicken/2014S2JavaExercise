@@ -88,7 +88,12 @@ public class Animal {
 	}
 
 	public boolean tooHeavy(){
-		return util.Constants.aniamlWeight.get(name)<=weight;
+		try {
+			return util.Constants.aniamlWeight.valueOf(
+					name.replace(" ", "").toUpperCase()).getValue() <= weight;
+		} catch (IllegalArgumentException e) {
+			return false;
+		}
 	}
 
 	public void feed(Food food){

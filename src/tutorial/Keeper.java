@@ -43,11 +43,13 @@ public class Keeper {
 			a.weigh(weight);
 			if (!a.tooHeavy()) {
 				try {
-					double w=util.Constants.aniamlWeight.get(a.getName())-weight;
-					double amountOfFood = w*(util.Constants.foodProportion.get(foodName));
+					double w = util.Constants.aniamlWeight.valueOf(
+							a.getName().replace(" ", "").toUpperCase()).getValue()- weight;
+					double amountOfFood = w
+							* (util.Constants.foodProportion.valueOf(foodName.toUpperCase()).getValue());
 					Food food=new Food(keeperId,foodName, amountOfFood, unitPrice, now.getTime());
 					a.feed(food);
-				} catch (NullPointerException e) {
+				} catch(IllegalArgumentException iae){
 					System.out.println("either aniamlWeight or foodProportion not set");
 				}
 			}

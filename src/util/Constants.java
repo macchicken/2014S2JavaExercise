@@ -2,25 +2,17 @@ package util;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class Constants {
 	
-	public static HashMap<String,Integer> fieldMapping=new HashMap<String,Integer>(){
-		{put("product",1);
-		put("boughton",2);
-		put("soldon",3);
-		put("useby",4);
-		put("boughtat",5);
-		put("soldat",6);
-		put("quantity",7);
-		put("serial",8);
-		put("location",9);
-		put("price",10);
-		}
-	};
 	
+	public enum FieldMapping{
+		product,boughton,soldon,
+		useby,boughtat,soldat,
+		quantity,serial,location,price;
+	}
+
 	public static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	public static DateFormat datef=DateFormat.getDateInstance(DateFormat.LONG,java.util.Locale.UK);
 	public static Pattern nameP = Pattern.compile("[a-z A-Z_0-9]+");
@@ -37,29 +29,32 @@ public class Constants {
 	public static final String valueSeparator=" ";
 	public static final String keyValueSeparator=":";
 	
-	public static HashMap<String,Double> foodProportion=new HashMap<String,Double>(){
-		{put("banana",4.0);
-		put("apple",1.5);
-		put("piapple",1.5);
-		put("beef",1.0);
-		put("pork",1.1);
-		put("seaFood",2.0);
-		put("vegetable",7.0);}
-	};
-
-	public static HashMap<String,Double> aniamlWeight=new HashMap<String,Double>(){
-		{put("Caracal",60.0);
-		put("Serval",40.0);
-		put("Bobcat",30.0);
-		put("Cheetah",125.0);
-		put("Fishing Cat",30.0);
-		put("Jaguar",225.0);
-		put("Leopard",210.0);
-		put("Eurasian Lynx",80.0);
-		put("Lion",425.0);
-		put("Tiger",675.0);
-		put("Snow Leopard",100.0);
+	public enum foodProportion{
+		BANANA(4.0),APPLE(1.5),PIAPPLE(1.5),BEEF(1.0),PORK(1.1),
+		SEAFOOD(2.0),VEGETABLE(7.0);
+		
+		private double value;
+		private foodProportion(double value){
+			this.value=value;
 		}
-	};
+		public double getValue() {
+			return value;
+		}
+	}
+
+	public enum aniamlWeight{
+		CARACAL(60.0),SERVAL(40.0),BOBCAT(30.0),CHEETAH(125.0),FISHINGCAT(30.0),
+		JAGUAR(225.0),LEOPARD(210.0),EURASIANLYNX(80.0),LION(425.0),TIGER(675.0),
+		SNOWLEOPARD(100.0);
+		
+		private double value;
+		private aniamlWeight(double value){
+			this.value=value;
+		}
+		public double getValue() {
+			return value;
+		}
+		
+	}
 
 }

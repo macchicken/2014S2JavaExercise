@@ -17,15 +17,16 @@ public class SortRecords implements CommandBus {
 	public void process(String cmd) {
 		String key=cmd.substring(4).trim();
 		if ("serial ID".equals(key)){key="serial";}
-		if (Constants.fieldMapping.containsKey(key)){
-			/*ArrayList<String> sortResult=store.sort(key);
-			for (String words:sortResult){
-				System.out.println(words);
-				System.out.println();
-			}*/
+//			/*ArrayList<String> sortResult=store.sort(key);
+//			for (String words:sortResult){
+//				System.out.println(words);
+//				System.out.println();
+//			}*/
+		try {
+			Constants.FieldMapping.valueOf(key);
 			store.setSortKey(key);
-		}else{
-			System.out.println("invalid field for sorting "+key);
+		} catch (IllegalArgumentException e) {
+			System.out.println("invalid field "+key);
 		}
 	}
 	@Override
