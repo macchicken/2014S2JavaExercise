@@ -109,10 +109,15 @@ public class Product {
 	}
 
 	public String toString(){
-		return "product: "+productName+"\nserial ID: "+serialId+"\nquantity: "+quantity+
-				"\nboughton: "+boughton+"\nsoldon: "+soldon+"\nuseby: "+useby+
-				"\nboughtat: $"+boughtat+"\nsoldat: $"+soldat+"\nprice: $"+unitPrice+
-				"\nlocation: "+location;
+        return String.format("product: %s\nserial ID: %s\nquantity: %d\nboughton: %s"+
+        "\nsoldon: %s\nuseby: %s\nboughtat: $%s\nsoldat: $%s\nprice: $%s\nlocation: %s",
+        productName,serialId,quantity,
+        boughton==null?"none":boughton,soldon==null?"none":soldon,useby==null?"none":useby,
+        boughtat,soldat,unitPrice,"".equals(location)?"none":location);
+//		return "product: "+productName+"\nserial ID: "+serialId+"\nquantity: "+quantity+
+//				"\nboughton: "+boughton+"\nsoldon: "+soldon+"\nuseby: "+useby+
+//				"\nboughtat: $"+boughtat+"\nsoldat: $"+soldat+"\nprice: $"+unitPrice+
+//				"\nlocation: "+location;
 	}
 	
 	/**
