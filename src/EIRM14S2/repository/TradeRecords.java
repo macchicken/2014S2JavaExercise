@@ -36,7 +36,7 @@ public class TradeRecords {
 	public void processSellTrade(ArrayList<String> parameters,Inventory store){
 		Product sellPro=tools.transDataToProduct(parameters);
 		if (sellPro.isValidProduct()&&sellPro.getSoldat()!=0&&sellPro.getSoldon()!=null){
-			Product pro=null;
+			Product pro;
 			if ((pro=store.updateStore(sellPro.getSerialId(),sellPro))!=null){
 				int soldQ=sellPro.getQuantity();
 				float purchase=pro.getUnitPrice()*soldQ;
@@ -44,7 +44,7 @@ public class TradeRecords {
 				int qBegin=pro.getQuantity()+soldQ;
 				Trade trade=new Trade();
 				trade.doTrade(pro.getProductName(),pro.getSerialId(),qBegin,soldQ,purchase,sold,pro.getSoldon());
-				LinkedList<Trade> tList=null;
+				LinkedList<Trade> tList;
 				if ((tList=records.get(pro.getSerialId()))==null){
 					tList=new LinkedList<Trade>();
 					records.put(pro.getSerialId(),tList);
@@ -79,8 +79,8 @@ public class TradeRecords {
 				if (!trade.getTradeTime().before(begin)&&!trade.getTradeTime().after(end)){
 					Float proProfit=productProfits.get(trade.getTradeProduct());
 					if (proProfit==null){
-						proProfit=Float.valueOf(trade.getProfit());
-					}else{proProfit=Float.valueOf(proProfit.floatValue()+trade.getProfit());}
+						proProfit=trade.getProfit();
+					}else{proProfit=proProfit+trade.getProfit();}
 					productProfits.put(trade.getTradeProduct(),proProfit);
 					String quantities=productQua.get(trade.getTradeProduct());
 					if (quantities==null){
@@ -104,7 +104,7 @@ public class TradeRecords {
 			String[] proQuantities=productQua.get(productName).split(Constants.commonSeparator);
 			int proQuaBegin=Integer.parseInt(proQuantities[0]);
 			int proQuaEnd=Integer.parseInt(proQuantities[1]);
-			float roa=(pcur.getValue().floatValue()/(proQuaBegin+proQuaEnd))*2;
+			float roa=(pcur.getValue()/(proQuaBegin+proQuaEnd))*2;
 			productRoa[i]=productName+Constants.commonSeparator+String.valueOf(roa);
 			i++;
 		}
