@@ -114,12 +114,8 @@ public class Product {
         productName,serialId,quantity,
         boughton==null?"none":boughton,soldon==null?"none":soldon,useby==null?"none":useby,
         boughtat,soldat,unitPrice,"".equals(location)?"none":location);
-//		return "product: "+productName+"\nserial ID: "+serialId+"\nquantity: "+quantity+
-//				"\nboughton: "+boughton+"\nsoldon: "+soldon+"\nuseby: "+useby+
-//				"\nboughtat: $"+boughtat+"\nsoldat: $"+soldat+"\nprice: $"+unitPrice+
-//				"\nlocation: "+location;
 	}
-	
+
 	/**
 	 * whether item is expired by today
 	 * @return true expired
@@ -129,16 +125,15 @@ public class Product {
 		Calendar now=Calendar.getInstance();
 		return isExpiredByDate(now.getTime());
 	}
-	
-	/**
-	 * whether item is expired by a given date
-	 * @param date - time
-	 * @return true expired
-	 */
-	public boolean isExpiredByDate(Date date){
-		if (this.useby==null){return false;}
-		return this.useby.before(date);
-	}
+
+    /**
+     * whether item is expired by a given date
+     * @param date - time
+     * @return true expired
+     */
+    public boolean isExpiredByDate(Date date){
+        return this.useby!=null&&this.useby.before(date);
+    }
 
 	/**
 	 * @return true if product name and serial id both has value
