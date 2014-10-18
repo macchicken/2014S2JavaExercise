@@ -52,7 +52,7 @@ public class Inventory {
 	 * @return a copy of result product if success
 	 */
 	public Product updateStore(String key,Product pro){
-		Product temp=null;
+		Product temp;
 		if ((temp=store.get(key))!=null){
 			if (!temp.isExpiredByDate(pro.getSoldon())&&!temp.isDiscarded()){
 				int q=temp.getQuantity();
@@ -118,7 +118,7 @@ public class Inventory {
 	 */
 	public LinkedList<String> queryProductbyDate(Date date){
 		LinkedList<String> result=new LinkedList<String>();
-		String temp="";
+		String temp;
 		result.add("On "+date.toString()+", following products would be available");
 		Object[] objs=store.values().toArray();
 		Product[] products=new Product[objs.length];

@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 public abstract class AbstractObjectComparator implements Comparator<Object> {
 	
-	protected String key;
+	String key;
 
 	public String getKey() {
 		return key;

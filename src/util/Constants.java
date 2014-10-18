@@ -10,7 +10,7 @@ public class Constants {
 	public enum FieldMapping{
 		product,boughton,soldon,
 		useby,boughtat,soldat,
-		quantity,serial,location,price;
+		quantity,serial,location,price
 	}
 
 	public static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");

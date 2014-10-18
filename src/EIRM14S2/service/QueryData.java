@@ -25,7 +25,7 @@ public class QueryData implements CommandBus {
 	public void process(String cmd) {
 		java.util.Scanner cmdSc=new java.util.Scanner(cmd);
 		cmdSc.next();
-		String parameter="";
+		String parameter;
 		CommandResult cmdResult=CommandResult.getInstance();
 		try {
 			parameter = cmdSc.next();
@@ -77,7 +77,7 @@ public class QueryData implements CommandBus {
 						}
 					}
 				}
-				String words = "";
+				String words;
 				LinkedList<String> result=new LinkedList<String>();
 				if (best) {words = "best sales";
 				}else{words = "worst sales";}

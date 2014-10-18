@@ -22,7 +22,7 @@ public class tools {
 	                  i++;
 	                  j--;
 	            }
-	      };
+	      }
 	      return i;
 	}
 	
