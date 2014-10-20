@@ -23,11 +23,7 @@ public class BoughtProdcut implements CommandBus {
 		ArrayList<String> parameters=new ArrayList<String>();
 		String[] data=cmd.substring(3).trim().split(Constants.commonSeparator);
 		for (String p:data){
-			try {
 				tools.processData(p.trim(),parameters);
-			} catch (ParseException e) {
-				System.out.println("some date parse errors ocuur "+e.getMessage());
-			}
 		}
 		tradeRecords.processBuyTrade(parameters, store);
 	

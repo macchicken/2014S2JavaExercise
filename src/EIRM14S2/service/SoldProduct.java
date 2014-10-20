@@ -23,11 +23,7 @@ public class SoldProduct implements CommandBus {
 		ArrayList<String> parameters=new ArrayList<String>();
 		String[] data=cmd.substring(4).trim().split(Constants.commonSeparator);
 		for (String p:data){
-			try {
 				tools.processData(p.trim(),parameters);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
 		}
 		tradeRecords.processSellTrade(parameters, store);
 	}

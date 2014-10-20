@@ -35,21 +35,17 @@ public class Instructions {
 			buff=new BufferedReader(new FileReader(inventoryfile));
 			String oneLine;
 			ArrayList<String> parameters=new ArrayList<String>();
-			try {
-				while((oneLine=buff.readLine())!=null){
-					oneLine=oneLine.trim();
-					if (!oneLine.equals("")){
-						tools.processData(oneLine,parameters);
-					}
-					if (oneLine.equals("")){
-						store.addProduct(parameters);
-						parameters.clear();
-					}
+			while((oneLine=buff.readLine())!=null){
+				oneLine=oneLine.trim();
+				if (!oneLine.equals("")){
+					tools.processData(oneLine,parameters);
 				}
-				if (parameters.size()!=0) {store.addProduct(parameters);}
-			}catch (ParseException e) {
-				System.out.println("some date parse errors ocuur "+e.getMessage());
+				if (oneLine.equals("")){
+					store.addProduct(parameters);
+					parameters.clear();
+				}
 			}
+			if (parameters.size()!=0) {store.addProduct(parameters);}
 		} catch (IOException e) {
 			System.out.println("read products file errors "+e.getMessage());
 		}finally{

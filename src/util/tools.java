@@ -119,7 +119,7 @@ public class tools {
 	 * @param parameters - attributes of a product
 	 * @throws ParseException
 	 */
-	public static void processData(String data,ArrayList<String> parameters) throws ParseException{
+	public static void processData(String data,ArrayList<String> parameters){
 		String key=data.split(Constants.valueSeparator)[0];
 		try {
 			Constants.FieldMapping fm=Constants.FieldMapping.valueOf(key);
