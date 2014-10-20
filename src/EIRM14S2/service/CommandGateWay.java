@@ -10,19 +10,19 @@ public class CommandGateWay {
 	 */
 	public CommandBus commandService(String command){
 		if (command.startsWith("buy")){
-			return new BoughtProdcut();
+			return BoughtProdcut.getInstance();
 		}
 		if (command.startsWith("sell")){
-			return new SoldProduct();
+			return SoldProduct.getInstance();
 		}
 		if (command.startsWith("discard")){
-			return new DiscardedProdcut();
+			return DiscardedProdcut.getInstance();
 		}
 		if (command.startsWith("query")){
-			return new QueryData();
+			return QueryData.getIntance();
 		}
 		if (command.startsWith("sort")){
-			return new SortRecords();
+			return SortRecords.getInstance();
 		}
 		return null;
 	}

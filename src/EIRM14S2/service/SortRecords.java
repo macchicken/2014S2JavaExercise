@@ -7,7 +7,14 @@ import util.Constants;
 public class SortRecords implements CommandBus {
 
 	private Inventory store;
-
+	private static SortRecords my;
+	
+	public static SortRecords getInstance(){
+		if (my==null){
+			return my=new SortRecords();
+		}
+		return my;
+	}
 
 	/**
 	 * set the key for sorting, sort the records while exporting to file

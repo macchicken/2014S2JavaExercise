@@ -1,6 +1,5 @@
 package EIRM14S2.service;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import util.Constants;
@@ -12,8 +11,14 @@ public class BoughtProdcut implements CommandBus {
 
 	private Inventory store;
 	private TradeRecords tradeRecords;
+	private static BoughtProdcut my;
 
-
+	public static BoughtProdcut getInstance(){
+		if (my==null){
+			return my=new BoughtProdcut();
+		}
+		return my;
+	}
 	/**
 	 * deal with a buy instruction
 	 * @param cmd - an instruction
