@@ -1,5 +1,7 @@
 package tutorial;
 
+import java.util.Arrays;
+
 public class tutorial12Week12 {
 
 	// greatest common divisor
@@ -14,7 +16,7 @@ public class tutorial12Week12 {
 	}
 	
 	public static int seriesFn(int n){
-		if (n==0){return 0;}
+		if (n==1){return 1;}
 		return n*n+seriesFn(n-1);
 	}
 	
@@ -58,11 +60,19 @@ public class tutorial12Week12 {
 	 * or the right half if the target is greater than the middle value
 	 * @param arr sorted in ascending order
 	 * @param target
-	 * @return -1 if not found
+	 * @return the index of the value if found or -1 if not found
 	 */
 	public static int findValue(int[] arr,int target){
+		int len=arr.length;
+		if (len>0){
+			int pivot=len/2;int middle=arr[pivot];
+			if (len==1){return target==middle?0:-1;}
+			if (target==middle){return pivot;}
+			if (target<middle){return findValue(Arrays.copyOfRange(arr, 0,pivot),target);}
+			if (target>middle){return findValue(Arrays.copyOfRange(arr, pivot,len),target);}}
 		return -1;
 	}
+	
 
 	public static int[] mergeSort(int[] arr) {
 		// base case:
@@ -110,6 +120,8 @@ public class tutorial12Week12 {
 //		System.out.println(seriesFn(3));
 //		double[] arr={2.0,3.0,1.0,-100.0};
 //		System.out.println(minimum(arr,arr[0],0));
+		int[] intArr={2,4,6,7,8,10};
+		System.out.println(findValue(intArr,6));
 	}
 
 }
