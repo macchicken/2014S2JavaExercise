@@ -63,13 +63,16 @@ public class tutorial12Week12 {
 	 * @return the index of the value if found or -1 if not found
 	 */
 	public static int findValue(int[] arr,int target){
+		return findValueInetnal(arr,target,0);
+	}
+	private static int findValueInetnal(int[] arr,int target,int increment){
 		int len=arr.length;
 		if (len>0){
 			int pivot=len/2;int middle=arr[pivot];
 			if (len==1){return target==middle?0:-1;}
-			if (target==middle){return pivot;}
-			if (target<middle){return findValue(Arrays.copyOfRange(arr, 0,pivot),target);}
-			if (target>middle){return findValue(Arrays.copyOfRange(arr, pivot,len),target);}}
+			if (target==middle){return increment+pivot;}
+			if (target<middle){return findValueInetnal(Arrays.copyOfRange(arr, 0,pivot),target,increment);}
+			if (target>middle){return findValueInetnal(Arrays.copyOfRange(arr, pivot,len),target,increment+pivot);}}
 		return -1;
 	}
 	
@@ -120,8 +123,13 @@ public class tutorial12Week12 {
 //		System.out.println(seriesFn(3));
 //		double[] arr={2.0,3.0,1.0,-100.0};
 //		System.out.println(minimum(arr,arr[0],0));
-		int[] intArr={2,4,6,7,8,10};
-		System.out.println(findValue(intArr,6));
+		int[] intArr={1,2,4,6,7,9};
+		System.out.println(findValue(intArr,1));
+		System.out.println(findValue(intArr,2));
+		System.out.println(findValue(intArr,3));
+		System.out.println(findValue(intArr,4));
+		System.out.println(findValue(intArr,5));
+		System.out.println(findValue(intArr,7));
 	}
 
 }
