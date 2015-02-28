@@ -57,6 +57,8 @@ public class BankAccount {
 		withdraw(amount);
 		other.deposit(amount);
 	}
+	
+	public void addInterest() {return;}
 
 	private double balance;
 }

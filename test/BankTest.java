@@ -1,9 +1,11 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
@@ -13,6 +15,7 @@ import tutorial.tutorial10Week10.SavingsAccount;
 import tutorial.tutorial10Week10.TermDepositAccount;
 
 @RunWith(Parameterized.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BankTest {
 
 	private static double binitial=1000;
@@ -27,9 +30,9 @@ public class BankTest {
     public static Iterable<Object[]> data() {
     	bankAccount2.deposit(binitial2);
     	bankAccount3.deposit(binitial3);
-        return Arrays.asList(new Object[][] { { bankAccount,30.0,970.0,1000.0 },
-        		{ bankAccount2,100.0,900.0,1000.0 },
-        		{ bankAccount3,200.0,795.0,995.0 }});
+        return Arrays.asList(new Object[][] { { bankAccount,30.0,970.0,1000.0,1000.0 },
+        		{ bankAccount2,100.0,900.0,1000.0,1000.1 },
+        		{ bankAccount3,200.0,795.0,995.0,995.199 }});
     }
 
     @Parameter(0)
@@ -37,20 +40,28 @@ public class BankTest {
     @Parameter(1)
     public double money;
     @Parameter(2)
-    public double wdbalace;
+    public double wdbalance;
     @Parameter(3)
-    public double debalace;
+    public double debalance;
+    @Parameter(4)
+    public double interestbalance;
     
 	@Test
-	public void testWithDraw() {
+	public void test001() {
 		account.withdraw(money);
-		assertEquals(wdbalace, account.getBalance(),0);
+		assertEquals(wdbalance, account.getBalance(),0);
 	}
 
 	@Test
-	public void testDeposit(){
+	public void test002(){
 		account.deposit(money);
-		assertEquals(debalace, account.getBalance(),0);
+		assertEquals(debalance, account.getBalance(),0);
+	}
+	
+	@Test
+	public void test003(){
+		account.addInterest();
+		assertEquals(interestbalance,account.getBalance(),0);
 	}
 
 }
