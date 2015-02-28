@@ -37,20 +37,20 @@ public class BankTest {
     @Parameter(1)
     public double money;
     @Parameter(2)
-    public double wbalace;
+    public double wdbalace;
     @Parameter(3)
-    public double fbalace;
+    public double debalace;
     
 	@Test
 	public void testWithDraw() {
 		account.withdraw(money);
-		assertEquals(wbalace, account.getBalance(),0);
+		assertEquals(wdbalace, account.getBalance(),0);
 	}
 
 	@Test
 	public void testDeposit(){
 		account.deposit(money);
-		assertEquals(fbalace, account.getBalance(),0);
+		assertEquals(debalace, account.getBalance(),0);
 	}
 
 }
