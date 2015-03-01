@@ -13,17 +13,18 @@ import dto.Product;
 
 public class Inventory {
 	
-	private HashMap<String,Product> store=new HashMap<String,Product>();
-	private static Inventory my;
+	private HashMap<String,Product> store=null;
 	private String defaultOuptput="output\\output.txt";
 	private String sortKey;
 	
-	public static Inventory getInstance(){
-		if (my==null){
-			return my=new Inventory();
-		}
-		return my;
+	private static class InventoryHolder{
+		private static final Inventory my=new Inventory();
 	}
+	public static Inventory getInstance(){
+		return InventoryHolder.my;
+	}
+
+	private Inventory(){store=new HashMap<String,Product>();}
 
 	public HashMap<String, Product> getStore() {
 		return store;

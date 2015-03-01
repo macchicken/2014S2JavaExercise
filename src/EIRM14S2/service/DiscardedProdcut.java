@@ -11,14 +11,16 @@ import EIRM14S2.repository.TradeRecords;
 public class DiscardedProdcut implements CommandBus {
 
 	private Inventory store;
-	private static DiscardedProdcut my; 
 
-	public static DiscardedProdcut getInstance(){
-		if (my==null){
-			return my=new DiscardedProdcut();
-		}
-		return my;
+	private static class DiscardedProdcutHolder{
+		private static final DiscardedProdcut my=new DiscardedProdcut(); 
 	}
+	public static DiscardedProdcut getInstance(){
+		return DiscardedProdcutHolder.my;
+	}
+
+	private DiscardedProdcut(){}
+
 	/**
 	 * discard the items
 	 * @param cmd - an instruction

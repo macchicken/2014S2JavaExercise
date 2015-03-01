@@ -6,16 +6,15 @@ import java.util.LinkedList;
 public class CommandResult {
 
 	private HashMap<String,LinkedList<String>> results;
-	private static CommandResult my;
+	private static class CommandResultHolder{
+		private static final CommandResult my=new CommandResult();
+	}
 	
 	public static CommandResult getInstance(){
-		if (my==null){
-			return my=new CommandResult();
-		}
-		return my;
+		return CommandResultHolder.my;
 	}
 
-	public CommandResult() {
+	private CommandResult() {
 		results=new HashMap<String,LinkedList<String>>();
 	}
 

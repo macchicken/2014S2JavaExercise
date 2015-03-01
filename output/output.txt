@@ -1,7 +1,7 @@
 product: sauce pan
 serial ID: 1975sa
 quantity: 10
-boughton: Tue May 13 00:00:00 CST 2014
+boughton: Tue May 13 00:00:00 EST 2014
 soldon: none
 useby: none
 boughtat: $19.99
@@ -12,9 +12,9 @@ location: none
 product: sugar
 serial ID: 1975su
 quantity: 80
-boughton: Mon May 13 00:00:00 CST 2013
-soldon: Sun Apr 06 00:00:00 CST 2014
-useby: Fri Dec 12 00:00:00 CST 2014
+boughton: Mon May 13 00:00:00 EST 2013
+soldon: Sun Apr 06 00:00:00 EST 2014
+useby: Fri Dec 12 00:00:00 EST 2014
 boughtat: $3.56
 soldat: $4.56
 price: $0.0356
@@ -23,9 +23,9 @@ location: none
 product: milk
 serial ID: 2014mi
 quantity: 100
-boughton: Mon Mar 31 00:00:00 CST 2014
+boughton: Mon Mar 31 00:00:00 EST 2014
 soldon: none
-useby: Sat Jul 05 00:00:00 CST 2014
+useby: Sat Jul 05 00:00:00 EST 2014
 boughtat: $4.63
 soldat: $0.0
 price: $0.0463
@@ -34,9 +34,9 @@ location: none
 product: sugar2
 serial ID: 2975su
 quantity: 200
-boughton: Mon May 13 00:00:00 CST 2013
+boughton: Mon May 13 00:00:00 EST 2013
 soldon: none
-useby: Mon Dec 01 00:00:00 CST 2014
+useby: Mon Dec 01 00:00:00 EST 2014
 boughtat: $3.57
 soldat: $0.0
 price: $0.01785

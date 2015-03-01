@@ -15,14 +15,17 @@ public class QueryData implements CommandBus {
 
 	private Inventory store;
 	private TradeRecords tradeRecords;
-	private static QueryData my;
+
+	private static class QueryDataHolder{
+		private static final QueryData my=new QueryData();
+	}
 
 	public static QueryData getIntance(){
-		if (my==null){
-			return my=new QueryData();
-		}
-		return my;
+		return QueryDataHolder.my;
 	}
+
+	private QueryData(){}
+
 	/**
 	 * deal with query
 	 * @param cmd - an instruction

@@ -11,14 +11,16 @@ public class BoughtProdcut implements CommandBus {
 
 	private Inventory store;
 	private TradeRecords tradeRecords;
-	private static BoughtProdcut my;
 
-	public static BoughtProdcut getInstance(){
-		if (my==null){
-			return my=new BoughtProdcut();
-		}
-		return my;
+	private static class BoughtProdcutHolder{
+		private static final BoughtProdcut my=new BoughtProdcut();
 	}
+	public static BoughtProdcut getInstance(){
+		return BoughtProdcutHolder.my;
+	}
+
+	private BoughtProdcut(){}
+
 	/**
 	 * deal with a buy instruction
 	 * @param cmd - an instruction

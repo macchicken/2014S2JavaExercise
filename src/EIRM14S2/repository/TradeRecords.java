@@ -17,17 +17,18 @@ import dto.Trade;
 public class TradeRecords {
 	
 	//{productName,list of corresponding product's trade}
-	private HashMap<String,LinkedList<Trade>> records=new HashMap<String,LinkedList<Trade>>();
-	private static TradeRecords my;
-	
+	private HashMap<String,LinkedList<Trade>> records=null;
+
+	private static class TradeRecordsHolder{
+		private static final TradeRecords my=new TradeRecords();
+	}
 
 	public static TradeRecords getInstance(){
-		if (my==null){
-			return my=new TradeRecords();
-		}
-		return my;
+		return TradeRecordsHolder.my;
 	}
 	
+	private TradeRecords(){records=new HashMap<String,LinkedList<Trade>>();}
+
 	/**
 	 * the action for selling products,save the records
 	 * @param parameters - a target item
