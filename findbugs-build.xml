@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="JavaExercise" default="findbugs">
 	<property environment="env"/>
+	<loadproperties srcFile="findbugs.properties"/>
     <property name="FINDBUGSHOME" value="${env.FINDBUGSHOME}"/>
 	<echo message="FINDBUGSHOME = ${FINDBUGSHOME}"/>
 	<path id="findbugs.path">
@@ -17,7 +18,7 @@
 			<auxClasspath path="${FINDBUGSHOME}/lib/findbugs-ant.jar" />
 			<auxClasspath>
 				<fileset dir="lib" includes="*.jar" />
-				<fileset dir="D:/hc105/user-lib/Junit411" includes="*.jar" />
+				<fileset dir="${junit.dir}" includes="*.jar" />
 			</auxClasspath>
 			<sourcePath path="src" />
 			<class location="bin" />

@@ -14,7 +14,7 @@ third argument is the file name for exportToFile
 fourth argument is the file name for saveToFile
 
 if fed up with typing whole path,could add System.getProperty("user.dir") in EIRM class to get current working director,
-it could make it access the input and ouput foulder,and just type the specific file name in the cmd arguments.
+it could make it access the input and output folder,and just type the specific file name in the CMD arguments.
 
-
-ant -f findbugs-build.xml to analysis the codes
+add findbugs.properties file to define some local environment setting
+run ant -f findbugs-build.xml to analysis the codes
