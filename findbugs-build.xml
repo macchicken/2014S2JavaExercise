@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JavaExercise" default="findbugs">
+	<property environment="env"/>
+    <property name="FINDBUGSHOME" value="${env.FINDBUGSHOME}"/>
+	<echo message="FINDBUGSHOME = ${FINDBUGSHOME}"/>
+	<path id="findbugs.path">
+		<fileset dir="${FINDBUGSHOME}/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
+		classpathref="findbugs.path" />
+	<target name="findbugs">
+		<mkdir dir="target/findbugs" />
+		<findbugs home="${FINDBUGSHOME}" output="html"
+			outputFile="target/findbugs/fb-check.html">
+			<auxClasspath path="${FINDBUGSHOME}/lib/findbugs-ant.jar" />
+			<auxClasspath>
+				<fileset dir="lib" includes="*.jar" />
+				<fileset dir="D:/hc105/user-lib/Junit411" includes="*.jar" />
+			</auxClasspath>
+			<sourcePath path="src" />
+			<class location="bin" />
+		</findbugs>
+	</target>
+
+</project>
